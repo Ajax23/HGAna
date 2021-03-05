@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Binding affinity analysis of Cyclodextrin &#8212; HGAna 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          HGAna</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="api.html">API</a></li>
+                <li><a href="simulation.html">Simulation</a></li>
+                <li><a href="density.html">Density</a></li>
+                <li><a href="diffusion.html">Diffusion</a></li>
+                <li><a href="distance.html">Distance</a></li>
+                <li><a href="#">Affinity</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Binding affinity analysis of Cyclodextrin</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10">
+      <div style="text-align: justify; text-justify: inter-word;"><div class="section" id="binding-affinity-analysis-of-cyclodextrin">
+<h1>Binding affinity analysis of Cyclodextrin<a class="headerlink" href="#binding-affinity-analysis-of-cyclodextrin" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">moldyn</span> <span class="k">as</span> <span class="nn">md</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">md</span><span class="o">.</span><span class="n">cd</span><span class="o">.</span><span class="n">affinity</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s2">&quot;COLVAR&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Centers of Mass&quot;</span><span class="p">,</span> <span class="s2">&quot;Oxygenes&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="fig1">
+<a class="reference internal image-reference" href="_images/affinity.svg"><img alt="_images/affinity.svg" src="_images/affinity.svg" width="50%" /></a>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">md</span><span class="o">.</span><span class="n">cd</span><span class="o">.</span><span class="n">affinity</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;COLVAR&quot;</span><span class="p">,</span> <span class="s2">&quot;count.obj&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.46</span><span class="p">],</span> <span class="n">is_force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">md</span><span class="o">.</span><span class="n">cd</span><span class="o">.</span><span class="n">affinity</span><span class="o">.</span><span class="n">number</span><span class="p">(</span><span class="s2">&quot;count.obj&quot;</span><span class="p">,</span> <span class="mf">298.15</span><span class="p">,</span> <span class="mf">31.3707e-27</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="nboutput nblast">
+  <div class="output_area rendered_html">
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>kJ/mol</th>
+          <th>kcal/mol</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>dG</th>
+          <td>-14.028719</td>
+          <td>-3.351099</td>
+        </tr>
+        <tr>
+          <th>dG_O1</th>
+          <td>-14.022662</td>
+          <td>-3.349652</td>
+        </tr>
+        <tr>
+          <th>dG_O2</th>
+          <td>0.882953</td>
+          <td>0.210915</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">tables</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">cd</span><span class="o">.</span><span class="n">affinity</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="s2">&quot;data/cyclodextrin/count.obj&quot;</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="mf">298.15</span><span class="p">,</span> <span class="mf">31.3707e-27</span><span class="p">)</span> <span class="k">for</span> <span class="n">cutoff</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">100</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">)]]</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="nboutput nblast">
+  <div class="output_area rendered_html">
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>Cutoff (ps)</th>
+          <th>dG (kJ/mol)</th>
+          <th>dG (kcal/mol)</th>
+          <th>k_on (dm^3/mol/s)</th>
+          <th>k_off (1/s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>0</th>
+          <td>0</td>
+          <td>-14.035023</td>
+          <td>-3.352605</td>
+          <td>1.073377e+10</td>
+          <td>3.729713e+07</td>
+        </tr>
+        <tr>
+          <th>0</th>
+          <td>100</td>
+          <td>-8.353826</td>
+          <td>-1.995514</td>
+          <td>3.106633e+08</td>
+          <td>1.068000e+07</td>
+        </tr>
+        <tr>
+          <th>0</th>
+          <td>200</td>
+          <td>-8.353826</td>
+          <td>-1.995514</td>
+          <td>3.106633e+08</td>
+          <td>1.068000e+07</td>
+        </tr>
+        <tr>
+          <th>0</th>
+          <td>300</td>
+          <td>-8.353826</td>
+          <td>-1.995514</td>
+          <td>3.106633e+08</td>
+          <td>1.068000e+07</td>
+        </tr>
+        <tr>
+          <th>0</th>
+          <td>400</td>
+          <td>-8.353826</td>
+          <td>-1.995514</td>
+          <td>3.106633e+08</td>
+          <td>1.068000e+07</td>
+        </tr>
+        <tr>
+          <th>0</th>
+          <td>500</td>
+          <td>-8.353826</td>
+          <td>-1.995514</td>
+          <td>3.106633e+08</td>
+          <td>1.068000e+07</td>
+        </tr>
+        <tr>
+          <th>0</th>
+          <td>600</td>
+          <td>-8.353826</td>
+          <td>-1.995514</td>
+          <td>3.106633e+08</td>
+          <td>1.068000e+07</td>
+        </tr>
+        <tr>
+          <th>0</th>
+          <td>700</td>
+          <td>-8.353826</td>
+          <td>-1.995514</td>
+          <td>3.106633e+08</td>
+          <td>1.068000e+07</td>
+        </tr>
+        <tr>
+          <th>0</th>
+          <td>800</td>
+          <td>-8.353826</td>
+          <td>-1.995514</td>
+          <td>3.106633e+08</td>
+          <td>1.068000e+07</td>
+        </tr>
+        <tr>
+          <th>0</th>
+          <td>900</td>
+          <td>-8.353826</td>
+          <td>-1.995514</td>
+          <td>3.106633e+08</td>
+          <td>1.068000e+07</td>
+        </tr>
+        <tr>
+          <th>0</th>
+          <td>1000</td>
+          <td>-8.353826</td>
+          <td>-1.995514</td>
+          <td>3.106633e+08</td>
+          <td>1.068000e+07</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>      </div>
+    </div>
+  </div>
+</div></div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Hamzeh Kraus.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>time &#8212; HGAna 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          HGAna</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../simulation.html">Simulation</a></li>
+                <li><a href="../density.html">Density</a></li>
+                <li><a href="../diffusion.html">Diffusion</a></li>
+                <li><a href="../distance.html">Distance</a></li>
+                <li><a href="../affinity.html">Affinity</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">time</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  </div>
+<div class=col-md-9 content><div class="section" id="time">
+<h1>time<a class="headerlink" href="#time" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="hgana.affinity.time">
+<code class="descclassname">hgana.affinity.</code><code class="descname">time</code><span class="sig-paren">(</span><em>data_link</em>, <em>cutoff</em>, <em>temp</em>, <em>volume</em>, <em>num_mol=1</em>, <em>is_std=False</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.affinity.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates the binding affinity <span class="math">\(\Delta G_T\)</span>.
+This is done by determining the association rate constant <span class="math">\(k_\text{On}\)</span>
+and dissociation rate constant <span class="math">\(k_\text{Off}\)</span></p>
+<div class="math">
+\[\begin{array}{cc}
+    k_\text{On}=\dfrac{1}{\langle t_u\rangle\cdot C_g},&amp;
+    k_\text{Off}=\dfrac{1}{\langle t_b\rangle}
+\end{array}\]</div>
+<p>with solute concentration <span class="math">\(C_g\)</span> of the free state in the complex</p>
+<div class="math">
+\[C_g=\frac{N}{V},\]</div>
+<p>number of solute molecules <span class="math">\(N\)</span>, box volume <span class="math">\(V\)</span>,
+average bound time <span class="math">\(\langle t_b\rangle\)</span> and average unbound time
+<span class="math">\(\langle t_u\rangle\)</span>. The two averages are calculated by
+determining the time of the host molecule being in a bound state
+before changing to an unbound one and vice versa. The resulting bound
+<span class="math">\(t_b\)</span> and unbound <span class="math">\(t_u\)</span> time instances, with instance
+quantities <span class="math">\(M_b\)</span> and <span class="math">\(M_u\)</span>, are then filtered by
+a minimal dwelling time <span class="math">\(c_{min}\)</span> resulting in the time
+average by normalizing the sum of all instances by their count</p>
+<div class="math">
+\[\begin{array}{cc}
+    \langle t_b\rangle=\dfrac1{M_b}\sum_{i=1}^{M_b}t_{b,i},&amp;
+    \langle t_u\rangle=\dfrac1{M_u}\sum_{i=1}^{M_u}t_{u,i}.
+\end{array}\]</div>
+<p>Finally the binding affinity results from</p>
+<div class="math">
+\[\begin{split}\Delta G_T&amp;=-RT\ln\frac{k_\text{On}C_0}{k_\text{Off}}
+=-RT\ln\frac{\langle t_b\rangle}{\langle t_u\rangle}-RT\ln\frac{C_0}{C_g}\\
+&amp;=-RT\ln\frac{\langle t_b\rangle}{\langle t_u\rangle}-RT\ln\frac{V}{NV_0}\end{split}\]</div>
+<p>with standard gas constant <span class="math">\(R\)</span>, temperature <span class="math">\(T\)</span>, standard
+state concentration <span class="math">\(C_0=1\frac{\text{mol}}{\text{l}}=V_0^{-1}\)</span> and standard
+state volume <span class="math">\(V_0=1.661nm\)</span>.</p>
+<p>The standard deviation can be determined by creating permutations
+containing a percentage of elements from the time arrays <span class="math">\(t_{b,i}\)</span>
+and <span class="math">\(t_{u,j}\)</span></p>
+<div class="math">
+\[\begin{array}{cc}
+    \boldsymbol{P}_u=\sum_k^{N_p}p_{u,k},&amp;
+    p_{u,k}=[t_{u,0},\dots,t_{u,N_u-x}]
+\end{array}\]</div>
+<p>with permutation matrix <span class="math">\(\boldsymbol{P}\)</span>, permutation <span class="math">\(p\)</span>,
+number of permutations <span class="math">\(N_p\)</span> and element percentage <span class="math">\(1-x\)</span>.
+This permutation matrix is then used to calculate multiple association
+and dissociation rates creating a pool of values, of which the
+standard deviation can be determined using</p>
+<div class="math">
+\[\text{std}(k_\text{On})=\sqrt{\frac{\sum_{k=1}^{N_p}\left(k_{\text{On},k}-\bar k_\text{On}\right)^2}{N_p-1}}\]</div>
+<p>with mean value <span class="math">\(\bar k_\text{On}\)</span> of the association rates
+calculated from the permutation matrix. Similarly, the standard deviation of
+the binding affinity can be determined by</p>
+<div class="math">
+\[\text{std}(\Delta G_T)=\sqrt{\frac{\sum_{k=1}^{N_p}\left(\Delta G_T^k-\Delta\bar G_T\right)^2}{N_p-1}}\]</div>
+<p>with mean value <span class="math">\(\Delta\bar G_T\)</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data_link</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd><p class="first last">Sampled affinity object</p>
+</dd>
+<dt><strong>cutoff</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer</span></dt>
+<dd><p class="first last">Time calculation cut-off in <span class="math">\(\text{ps}\)</span></p>
+</dd>
+<dt><strong>temp</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Simulated temperature in <span class="math">\(\text{K}\)</span></p>
+</dd>
+<dt><strong>volume</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Simulation box volume in <span class="math">\(\text{m}^3\)</span></p>
+</dd>
+<dt><strong>num_mol</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer, optional</span></dt>
+<dd><p class="first last">Number of molecules</p>
+</dd>
+<dt><strong>is_std</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dd><p class="first last">True to calculate standard deviation</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>table</strong> <span class="classifier-delimiter">:</span> <span class="classifier">DataFrame</span></dt>
+<dd><p class="first last">Pandas DataFrame of binding affinity in <span class="math">\(\frac{\text{kJ}}{\text{mol}}\)</span>
+and <span class="math">\(\frac{\text{kcal}}{\text{mol}}\)</span>,
+<span class="math">\(k_\text{On}\)</span> in <span class="math">\(\frac{1}{\text{s}}\)</span> and
+<span class="math">\(k_\text{Off}\)</span> in
+<span class="math">\(\frac{\text{dm}^3}{\text{mol}\cdot\text{s}}\)</span>, and optionally
+the standard deviations of these values</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Hamzeh Kraus.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

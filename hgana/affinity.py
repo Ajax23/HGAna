@@ -63,7 +63,7 @@ def sample(link_colvar, link_out, com, orient, is_force=False):
         # Extract data
         with open(link_colvar, "r") as file_in:
             # Initialize data structure
-            count_num = {"b": 0, "b_1": 0, "b_2": 0, "u": 0}
+            # count_num = {"b": 0, "b_1": 0, "b_2": 0, "u": 0}
             count = {"b": [], "b_1": [], "b_2": [], "u": []}
             counter = {"b_u": 1, "o_1_2": 1}
             data_old = None

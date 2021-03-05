@@ -119,7 +119,7 @@ html_theme_options = {
     'source_link_position': "",
     'bootswatch_theme': "paper",
     'bootstrap_version': "3",
-    'navbar_links': [("API", "api"), ("Simulation", "simulation"), ("Density", "density"), ("Diffusion", "diffusion"), ("Distance", "distance"), ("Affinity", "affinity"), ],
+    'navbar_links': [("API", "api"), ("Affinity", "affinity"), ],
 }
 
 html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()

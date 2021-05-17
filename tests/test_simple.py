@@ -17,6 +17,9 @@ class UserModelCase(unittest.TestCase):
     #################
     @classmethod
     def setUpClass(self):
+        if os.path.isdir("tests"):
+            os.chdir("tests")
+
         folder = 'output'
         hga.utils.mkdirp(folder)
         hga.utils.mkdirp(folder+"/temp")

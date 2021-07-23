@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>hgana.affinity &#8212; HGAna 0.1.0 documentation</title>
+    <title>Box.get_mols &#8212; HGAna 0.1.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
@@ -76,7 +76,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">hgana.affinity</a></li>
+<li><a class="reference internal" href="#">Box.get_mols</a></li>
 </ul>
 </ul>
 </li>
@@ -106,33 +106,28 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="module-hgana.affinity">
-<span id="hgana-affinity"></span><h1>hgana.affinity<a class="headerlink" href="#module-hgana.affinity" title="Permalink to this headline">¶</a></h1>
-<p>All necessary function for analysing the host-guest simulation.</p>
-<p class="rubric">Functions</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
+  </div>
+<div class=col-md-9 content><div class="section" id="box-get-mols">
+<h1>Box.get_mols<a class="headerlink" href="#box-get-mols" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="hgana.box.Box.get_mols">
+<code class="descclassname">Box.</code><code class="descname">get_mols</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hgana.box.Box.get_mols" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the molecule dictionary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="hgana.affinity.hist.html#hgana.affinity.hist" title="hgana.affinity.hist"><code class="xref py py-obj docutils literal"><span class="pre">hist</span></code></a>(link_colvar,&nbsp;column[,&nbsp;legend,&nbsp;conditions])</td>
-<td>This function plots a histogram of the provided COLVAR file.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.affinity.number.html#hgana.affinity.number" title="hgana.affinity.number"><code class="xref py py-obj docutils literal"><span class="pre">number</span></code></a>(data_link,&nbsp;temp,&nbsp;volume[,&nbsp;num_mol])</td>
-<td>This function calculates the binding affinity <span class="math">\(\Delta G_N\)</span>.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="hgana.affinity.sample.html#hgana.affinity.sample" title="hgana.affinity.sample"><code class="xref py py-obj docutils literal"><span class="pre">sample</span></code></a>(link_colvar,&nbsp;link_out,&nbsp;com,&nbsp;orient[,&nbsp;…])</td>
-<td>This function samples the bound and unbound instance of a molecule and cyclodextrin.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.affinity.time.html#hgana.affinity.time" title="hgana.affinity.time"><code class="xref py py-obj docutils literal"><span class="pre">time</span></code></a>(data_link,&nbsp;cutoff,&nbsp;temp,&nbsp;volume[,&nbsp;…])</td>
-<td>This function calculates the binding affinity <span class="math">\(\Delta G_T\)</span>.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="hgana.affinity.time_series.html#hgana.affinity.time_series" title="hgana.affinity.time_series"><code class="xref py py-obj docutils literal"><span class="pre">time_series</span></code></a>(link_colvar,&nbsp;com[,&nbsp;dt])</td>
-<td>This function plots the bound and unbound instances over time for a given spatial bound cutoff.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>mols</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dictionary</span></dt>
+<dd><p class="first last">Molecule dictionary containing all information</p>
+</dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
 </div>
 
 

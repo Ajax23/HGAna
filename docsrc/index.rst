@@ -25,6 +25,7 @@ To see the code or report a bug, please visit the `GitHub repository
        <div class="panel-body">
 
 * Binding Affinity :ref:`API <affinity_api>`
+* MC-Simulation :ref:`API <mc_api>`
 * Utilities :ref:`API <utilities_api>`
 
 .. raw:: html

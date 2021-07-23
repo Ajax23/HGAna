@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>hgana.affinity &#8212; HGAna 0.1.0 documentation</title>
+    <title>hgana.extract &#8212; HGAna 0.1.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
@@ -76,7 +76,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">hgana.affinity</a></li>
+<li><a class="reference internal" href="#">hgana.extract</a></li>
 </ul>
 </ul>
 </li>
@@ -106,9 +106,9 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="module-hgana.affinity">
-<span id="hgana-affinity"></span><h1>hgana.affinity<a class="headerlink" href="#module-hgana.affinity" title="Permalink to this headline">¶</a></h1>
-<p>All necessary function for analysing the host-guest simulation.</p>
+  <div class="section" id="module-hgana.extract">
+<span id="hgana-extract"></span><h1>hgana.extract<a class="headerlink" href="#module-hgana.extract" title="Permalink to this headline">¶</a></h1>
+<p>Extract structures from COLAVR file for free energy simulations.</p>
 <p class="rubric">Functions</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -116,20 +116,11 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="hgana.affinity.hist.html#hgana.affinity.hist" title="hgana.affinity.hist"><code class="xref py py-obj docutils literal"><span class="pre">hist</span></code></a>(link_colvar,&nbsp;column[,&nbsp;legend,&nbsp;conditions])</td>
-<td>This function plots a histogram of the provided COLVAR file.</td>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.extract.convert_trr.html#hgana.extract.convert_trr" title="hgana.extract.convert_trr"><code class="xref py py-obj docutils literal"><span class="pre">convert_trr</span></code></a>(time,&nbsp;orient,&nbsp;out_link)</td>
+<td>Convert trr to gro at specified time using gromacs.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.affinity.number.html#hgana.affinity.number" title="hgana.affinity.number"><code class="xref py py-obj docutils literal"><span class="pre">number</span></code></a>(data_link,&nbsp;temp,&nbsp;volume[,&nbsp;num_mol])</td>
-<td>This function calculates the binding affinity <span class="math">\(\Delta G_N\)</span>.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="hgana.affinity.sample.html#hgana.affinity.sample" title="hgana.affinity.sample"><code class="xref py py-obj docutils literal"><span class="pre">sample</span></code></a>(link_colvar,&nbsp;link_out,&nbsp;com,&nbsp;orient[,&nbsp;…])</td>
-<td>This function samples the bound and unbound instance of a molecule and cyclodextrin.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.affinity.time.html#hgana.affinity.time" title="hgana.affinity.time"><code class="xref py py-obj docutils literal"><span class="pre">time</span></code></a>(data_link,&nbsp;cutoff,&nbsp;temp,&nbsp;volume[,&nbsp;…])</td>
-<td>This function calculates the binding affinity <span class="math">\(\Delta G_T\)</span>.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="hgana.affinity.time_series.html#hgana.affinity.time_series" title="hgana.affinity.time_series"><code class="xref py py-obj docutils literal"><span class="pre">time_series</span></code></a>(link_colvar,&nbsp;com[,&nbsp;dt])</td>
-<td>This function plots the bound and unbound instances over time for a given spatial bound cutoff.</td>
+<tr class="row-even"><td><a class="reference internal" href="hgana.extract.extract.html#hgana.extract.extract" title="hgana.extract.extract"><code class="xref py py-obj docutils literal"><span class="pre">extract</span></code></a>(file_link,&nbsp;out_link[,&nbsp;dt,&nbsp;com,&nbsp;…])</td>
+<td>Extract complex structure from COLVAR file.</td>
 </tr>
 </tbody>
 </table>

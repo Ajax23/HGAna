@@ -78,6 +78,7 @@
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">API reference</a><ul>
 <li><a class="reference internal" href="#binding-affinity">Binding-Affinity</a></li>
+<li><a class="reference internal" href="#mc-simulation">MC-Simulation</a></li>
 <li><a class="reference internal" href="#utilities">Utilities</a></li>
 </ul>
 </li>
@@ -121,7 +122,27 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/hgana.affinity.html#module-hgana.affinity" title="hgana.affinity"><code class="xref py py-obj docutils literal"><span class="pre">affinity</span></code></a></td>
-<td>All necessary function for analysing the resulted data.</td>
+<td>All necessary function for analysing the host-guest simulation.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/hgana.extract.html#module-hgana.extract" title="hgana.extract"><code class="xref py py-obj docutils literal"><span class="pre">extract</span></code></a></td>
+<td>Extract structures from COLAVR file for free energy simulations.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mc-simulation">
+<span id="mc-api"></span><h2>MC-Simulation<a class="headerlink" href="#mc-simulation" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/hgana.box.Box.html#hgana.box.Box" title="hgana.box.Box"><code class="xref py py-obj docutils literal"><span class="pre">box.Box</span></code></a>(size)</td>
+<td>This class creates a hypothetical simulation box, to which molecules are added.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/hgana.mc.MC.html#hgana.mc.MC" title="hgana.mc.MC"><code class="xref py py-obj docutils literal"><span class="pre">mc.MC</span></code></a>(box,&nbsp;temp)</td>
+<td>This class run a Monte Carlo algorithm in order to calculate the probability of complex creating between two molecules.</td>
 </tr>
 </tbody>
 </table>

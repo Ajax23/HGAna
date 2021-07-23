@@ -15,6 +15,20 @@ Binding-Affinity
     :toctree: generated/
 
     affinity
+    extract
+
+.. _mc_api:
+
+MC-Simulation
+-------------
+
+.. currentmodule:: hgana
+
+.. autosummary::
+    :toctree: generated/
+
+    box.Box
+    mc.MC
 
 
 .. _utilities_api:

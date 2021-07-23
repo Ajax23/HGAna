@@ -1,7 +1,7 @@
 ################################################################################
-# Analyze Class                                                                #
+# Addinity Module                                                              #
 #                                                                              #
-"""All necessary function for analysing the resulted data."""
+"""All necessary function for analysing the host-guest simulation."""
 ################################################################################
 
 

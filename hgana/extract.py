@@ -1,3 +1,10 @@
+################################################################################
+# Extract Module                                                               #
+#                                                                              #
+"""Extract structures from COLAVR file for free energy simulations."""
+################################################################################
+
+
 import os
 import sys
 import shutil

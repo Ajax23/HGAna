@@ -56,11 +56,18 @@ class UserModelCase(unittest.TestCase):
         self.assertEqual(round(hga.utils.toc(hga.utils.tic(), is_print=True)), 0)
 
 
-    ################
-    # Cyclodextrin #
-    ################
-    def test_cd(self):
-        self.skipTest("Temporary")
+    ###########
+    # Extract #
+    ###########
+    def test_extract(self):
+        hga.extract.extract("data/COLVAR", "output")
+
+
+    ############
+    # Affinity #
+    ############
+    def test_affinity(self):
+        # self.skipTest("Temporary")
 
         # Set style
         sns.set_style("white",{"xtick.bottom": True,'ytick.left': True})
@@ -107,20 +114,31 @@ class UserModelCase(unittest.TestCase):
     def test_box(self):
         # Initialize
         box = hga.Box([10, 10, 10])
-        print()
 
         # Add molecules
         box.add_mol(10)
         box.add_mol(10)
         box.add_mol(10)
-        print(box.get_mols())
+        self.assertEqual(box.get_mols(), {0: {'num': 10, 'is_move': True, 'name': '', 'struct': ''}, 1: {'num': 10, 'is_move': True, 'name': '', 'struct': ''}, 2: {'num': 10, 'is_move': True, 'name': '', 'struct': ''}})
 
         # Set interaction matrix
         box.set_interaction(0, 1, 10)
-        print(box.get_interaction(1, 0))
-        print(box.get_im())
+        self.assertEqual(box.get_interaction(1, 0), 10)
+        self.assertEqual(box.get_im(), {0: {0: 0, 1: 10, 2: 0}, 1: {0: 10, 1: 0, 2: 0}, 2: {0: 0, 1: 0, 2: 0}})
+
+        # Getter functions
+        self.assertEqual(box.get_size(), [10, 10, 10])
+        self.assertEqual(box.get_num(0), 10)
+        self.assertEqual(box.get_name(0), "")
+        self.assertEqual(box.get_struct(0), "")
+
+        # Test error
+        print()
+        self.assertIsNone(box.add_mol(100000))
 
     def test_mc(self):
+        # self.skipTest("Temporary")
+
         # Set up box
         box = hga.Box([10, 10, 10])
         box.add_mol(10, is_move=False)
@@ -130,15 +148,15 @@ class UserModelCase(unittest.TestCase):
 
         # Initialize
         mc = hga.MC(box, 298)
-        print()
-        print(mc._occupied)
+        self.assertEqual(mc._occupied, {0: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 1: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]})
 
         # Move
         mc._move(0, 0, 999)
-        print(mc._occupied)
+        self.assertEqual(mc._occupied, {0: [1, 2, 3, 4, 5, 6, 7, 8, 9, 999], 1: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]})
 
         # Run
-        mc.run(100000, 1000000, dt=1000)
+        print()
+        mc.run(100000, 100000, dt=1000)
         for occ in mc._occupied.values():
             occ.sort()
             print(occ)

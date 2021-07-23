@@ -39,6 +39,7 @@ class Box:
         # Process input
         if num > self._free:
             print("Number of molecules is larger than remaining free cells")
+            return
 
         # Remove number of molecules from number of cells
         self._free -= num
@@ -135,6 +136,21 @@ class Box:
             Molecule name
         """
         return self._mols[idx]["name"]
+
+    def get_struct(self, idx):
+        """Return the molecule structure file link.
+
+        Parameters
+        ----------
+        idx : int
+            Molecule index
+
+        Returns
+        -------
+        structure : string
+            Structure file link
+        """
+        return self._mols[idx]["struct"]
 
     def get_im(self):
         """Return the interaction matrix.

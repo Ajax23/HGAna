@@ -60,6 +60,8 @@ class UserModelCase(unittest.TestCase):
     # Cyclodextrin #
     ################
     def test_cd(self):
+        self.skipTest("Temporary")
+
         # Set style
         sns.set_style("white",{"xtick.bottom": True,'ytick.left': True})
         sns.set_context("paper")
@@ -98,6 +100,50 @@ class UserModelCase(unittest.TestCase):
         hga.affinity.time_series("data/COLVAR", [1, 2])
         plt.savefig("output/time_series.pdf", format="pdf", dpi=1000)
         # plt.show()
+
+    ######
+    # MC #
+    ######
+    def test_box(self):
+        # Initialize
+        box = hga.Box([10, 10, 10])
+        print()
+
+        # Add molecules
+        box.add_mol(10)
+        box.add_mol(10)
+        box.add_mol(10)
+        print(box.get_mols())
+
+        # Set interaction matrix
+        box.set_interaction(0, 1, 10)
+        print(box.get_interaction(1, 0))
+        print(box.get_im())
+
+    def test_mc(self):
+        # Set up box
+        box = hga.Box([10, 10, 10])
+        box.add_mol(10, is_move=False)
+        box.add_mol(10)
+        box.set_interaction(0, 1, -15)
+        box.set_interaction(0, 0, 0)
+
+        # Initialize
+        mc = hga.MC(box, 298)
+        print()
+        print(mc._occupied)
+
+        # Move
+        mc._move(0, 0, 999)
+        print(mc._occupied)
+
+        # Run
+        mc.run(10000000, 100000000, dt=1000)
+        for occ in mc._occupied.values():
+            occ.sort()
+            print(occ)
+
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

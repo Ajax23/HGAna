@@ -138,7 +138,7 @@ class UserModelCase(unittest.TestCase):
         print(mc._occupied)
 
         # Run
-        mc.run(10000000, 100000000, dt=1000)
+        mc.run(100000, 1000000, dt=1000)
         for occ in mc._occupied.values():
             occ.sort()
             print(occ)

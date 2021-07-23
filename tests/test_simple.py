@@ -60,7 +60,7 @@ class UserModelCase(unittest.TestCase):
     # Extract #
     ###########
     def test_extract(self):
-        hga.extract.extract("data/COLVAR", "output")
+        hga.extract.extract("data/COLVAR", "output", com=0.9)
 
 
     ############
@@ -77,7 +77,7 @@ class UserModelCase(unittest.TestCase):
         # Count bound and unbound instances
         print()
         hga.affinity.sample("data/COLVAR", "output/count.obj", [1, 0.5], [2, 0.46], is_force=True)
-        hga.affinity.sample("data/COLVAR", "output/count.obj", [1, 0.5], [2, 0.46], is_force=False)
+        hga.affinity.sample("data/COLVAR", "output/count.obj", [1, 0.9], [2, 0.46], is_force=False)
 
         # Calculate binding affinity through brute-force summation
         print()

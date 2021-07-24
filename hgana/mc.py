@@ -41,7 +41,6 @@ class MC:
                 self._occupied[mol_id].append(cell_id)
                 cell_id += 1
 
-
     def _move(self, mol_id, old, new):
         """Move molecule from an old cell to a new cell.
 
@@ -61,7 +60,6 @@ class MC:
         # Update occupancy
         self._occupied[mol_id].remove(old)
         self._occupied[mol_id].append(new)
-
 
     def _metropolis(self, dE):
         """Performs the acceptance criterion of the Metropolis–Hastings
@@ -86,7 +84,7 @@ class MC:
         else:
             return rand < min(1, np.exp(-self._beta*dE))
 
-    def _run_phase(self, steps, binding, dt):
+    def _run_phase(self, steps, binding, pb_f, n_print, out, traj):
         """Run Monte Carlo algorithm for a number of steps.
 
         Parameters
@@ -95,8 +93,14 @@ class MC:
             Number of MC steps
         binding : list
             Systems to calculate the binding probability for
-        dt : integer
-            Output frequency in steps
+        pb_f : list
+            Length and frequency of probability calculation list
+        n_print : integer
+            Number of steps to print output for
+        out : list
+            Probability output file link and frequency in steps
+        traj : list
+            Trajectory output file link and frequency in steps
         """
         # Initialize
         im = self._im
@@ -166,27 +170,36 @@ class MC:
             else:
                 n_rej += 1
 
-            # Calculation and output
-            if dt:
-                # Calculate average binding probability
+            # Calculate average binding probability
+            if pb_f[0] and ((step_id+1)%pb_f[1]==0 or step_id==0 or step_id==steps-1):
                 for host, guest in list(p_b.keys()):
+                    if len(p_b[(host, guest)])==pb_f[0]:
+                        p_b[(host, guest)].pop(0)
                     p_b[(host, guest)].append(0)
-                    for cell in list(set(occupied[host])):
-                        if host in lattice[cell] and guest in lattice[cell]:
-                            p_b[(host, guest)][-1] += 1
-                    p_b[(host, guest)][-1] /= mols[host]["num"]
+
+                    if is_accept or step_id<=2:
+                        for cell in list(set(occupied[host])):
+                            if host in lattice[cell] and guest in lattice[cell]:
+                                p_b[(host, guest)][-1] += 1
+                        p_b[(host, guest)][-1] /= mols[host]["num"]
+                    else:
+                        p_b[(host, guest)][-1] += p_b[(host, guest)][-2]
 
             # Progress
-                if (step_id+1)%dt==0 or step_id==0 or step_id==steps-1:
-                    sys.stdout.write(out_form%(step_id+1)+"/"+out_form%steps+" - "+"n_acc = "+"%5i"%n_acc+", n_rej = "+"%5i"%n_rej+", mean(0, 1) = "+"%.5f"%np.mean(p_b[(0, 1)])+", std(0, 1) = "+"%.5f"%np.std(p_b[(0, 1)])+"\r")
-                    sys.stdout.flush()
+            if n_print and ((step_id+1)%n_print==0 or step_id==0 or step_id==steps-1):
+                out_string = out_form%(step_id+1)+"/"+out_form%steps
+                out_string += "  - acc/rej="+"%.3f"%(n_acc/n_rej if n_rej>0 else 0) # +" "+str(n_acc)+" "+str(n_rej)
+                for host, guest in list(p_b.keys()):
+                    out_string += ", p_b("+str(host)+","+str(guest)+")="+"%.4f"%np.mean(p_b[(host, guest)])+"+-"+"%.4f"%np.std(p_b[(host, guest)])
+                sys.stdout.write(out_string+"\r")
+                sys.stdout.flush()
 
-        if dt:
+        if n_print:
             print()
 
-        return {"n_acc": n_acc, "n_rej": n_rej}
+        return {"p_b": p_b, "n_acc": n_acc, "n_rej": n_rej}
 
-    def run(self, steps_equi, steps_prod, binding=[{"host": 0, "guest": 1}], dt=1000):
+    def run(self, steps_equi, steps_prod, binding=[{"host": 0, "guest": 1}], pb_f=[1000, 100], n_print=1000, out=["", 0], traj=["", 0]):
         """Run Monte Carlo algorithm.
 
         Parameters
@@ -195,13 +208,21 @@ class MC:
             Number of MC steps in the equilibration phase
         steps_prod : integer
             Number of MC steps in the production phase
-        binding : list
+        binding : list, optional
             Systems to calculate the binding probability for
-        dt : integer, optional
-            Output frequency in steps
+        pb_f : list, optional
+            Length and frequency of probability calculation list
+        n_print : integer, optional
+            Number of steps to print output for
+        out : list, optional
+            Probability output file link and frequency in steps
+        traj : list, optional
+            Trajectory output file link and frequency in steps
         """
         # Run equilibration phase
-        self._run_phase(steps_equi, binding, 0)
+        print("Running equilibration phase ...")
+        self._run_phase(steps_equi, binding, [0, 0], 0, ["", 0], ["", 0])
 
         # Run Production phase
-        self._run_phase(steps_prod, binding, dt)
+        print("Running production phase ...")
+        return self._run_phase(steps_prod, binding, pb_f, n_print, out, traj)

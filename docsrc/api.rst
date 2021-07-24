@@ -29,6 +29,7 @@ MC-Simulation
 
     box.Box
     mc.MC
+    adsorption.Adsorption
 
 
 .. _utilities_api:

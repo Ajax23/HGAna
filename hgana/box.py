@@ -58,6 +58,16 @@ class Box:
     ##################
     # Setter Methods #
     ##################
+    def set_im(self, im):
+        """Set interaction matrix.
+
+        Parameters
+        ----------
+        im : dictionary
+            Interaction matrix
+        """
+        self._im = im
+
     def set_interaction(self, mol_a, mol_b, val):
         """Add interaction parameter between two molecules.
 

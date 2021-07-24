@@ -32,6 +32,11 @@ class UserModelCase(unittest.TestCase):
             elif os.path.isdir(file_path):
                 shutil.rmtree(file_path)
 
+        # Set style
+        sns.set_style("white",{"xtick.bottom": True,'ytick.left': True})
+        sns.set_context("paper")
+        sns.set_palette(sns.color_palette("deep"))
+
     #########
     # Utils #
     #########
@@ -60,6 +65,8 @@ class UserModelCase(unittest.TestCase):
     # Extract #
     ###########
     def test_extract(self):
+        self.skipTest("Temporary")
+
         hga.extract.extract("data/COLVAR", "output", com=0.9)
 
 
@@ -67,12 +74,7 @@ class UserModelCase(unittest.TestCase):
     # Affinity #
     ############
     def test_affinity(self):
-        # self.skipTest("Temporary")
-
-        # Set style
-        sns.set_style("white",{"xtick.bottom": True,'ytick.left': True})
-        sns.set_context("paper")
-        sns.set_palette(sns.color_palette("deep"))
+        self.skipTest("Temporary")
 
         # Count bound and unbound instances
         print()
@@ -125,6 +127,8 @@ class UserModelCase(unittest.TestCase):
         box.set_interaction(0, 1, 10)
         self.assertEqual(box.get_interaction(1, 0), 10)
         self.assertEqual(box.get_im(), {0: {0: 0, 1: 10, 2: 0}, 1: {0: 10, 1: 0, 2: 0}, 2: {0: 0, 1: 0, 2: 0}})
+        box.set_im({0: {0: 0, 1: 15, 2: 0}, 1: {0: 15, 1: 0, 2: 0}, 2: {0: 0, 1: 0, 2: 0}})
+        self.assertEqual(box.get_im(), {0: {0: 0, 1: 15, 2: 0}, 1: {0: 15, 1: 0, 2: 0}, 2: {0: 0, 1: 0, 2: 0}})
 
         # Getter functions
         self.assertEqual(box.get_size(), [10, 10, 10])
@@ -137,7 +141,8 @@ class UserModelCase(unittest.TestCase):
         self.assertIsNone(box.add_mol(100000))
 
     def test_mc(self):
-        # self.skipTest("Temporary")
+        self.skipTest("Temporary")
+        print()
 
         # Set up box
         box = hga.Box([10, 10, 10])
@@ -155,12 +160,41 @@ class UserModelCase(unittest.TestCase):
         self.assertEqual(mc._occupied, {0: [1, 2, 3, 4, 5, 6, 7, 8, 9, 999], 1: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]})
 
         # Run
-        print()
-        mc.run(100000, 100000, dt=1000)
+        mc.run(100000, 100000, binding=[{"host": 0, "guest": 1}], pb_f=[1000, 50], n_print=1000)
         for occ in mc._occupied.values():
             occ.sort()
             print(occ)
 
+        # Add Inhibitor
+        box.add_mol(10)
+        box.set_interaction(0, 2, -10)
+        mc = hga.MC(box, 298)
+        mc.run(100000, 100000, binding=[{"host": 0, "guest": 1}, {"host": 0, "guest": 2}], pb_f=[1000, 50], n_print=1000)
+        for occ in mc._occupied.values():
+            occ.sort()
+            print(occ)
+
+    def test_ads(self):
+        # self.skipTest("Temporary")
+        print()
+
+        # Initialize
+        ads = hga.Adsorption([10, 10, 10])
+        ads.add_mol([1, 5, 10], is_move=False)
+        # ads.add_mol([x for x in range(1, 20+1, 5)])
+        ads.add_mol([x for x in range(1, 100+1, 1)])
+        ads.set_interaction(0, 1, -15)
+        # ads.set_interaction(0, 2, -10)
+
+        # Run single
+        results = ads.run(298, 100000, 10000, "output/ads.obj", binding=[{"host": 0, "guest": 1}], pb_f=[1000, 50], n_print=1000, is_parallel=True)
+        # print(results)
+
+        # Plot
+        plt.figure(figsize=(6, 4))
+        ads.plot("output/ads.obj", 1, 0, (0, 1))
+        plt.savefig("output/ads.pdf", format="pdf", dpi=1000)
+        # plt.show()
 
 
 if __name__ == '__main__':

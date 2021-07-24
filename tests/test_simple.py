@@ -200,7 +200,7 @@ class UserModelCase(unittest.TestCase):
         # Test special cases
         ads = hga.Adsorption([10, 10, 10])
         ads.add_mol(1, is_move=False)
-        ads.add_mol([1, 10, 20])
+        ads.add_mol(1)
         ads.set_interaction(0, 1, -15)
         results = ads.run(298, 100000, 10000, "output/ads.obj", binding=[{"host": 0, "guest": 1}], pb_f=[1000, 50], n_print=1000, is_parallel=True)
 

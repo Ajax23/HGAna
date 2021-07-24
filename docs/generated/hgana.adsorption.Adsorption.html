@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Box &#8212; HGAna 0.1.0 documentation</title>
+    <title>Adsorption &#8212; HGAna 0.1.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
@@ -76,7 +76,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Box</a></li>
+<li><a class="reference internal" href="#">Adsorption</a></li>
 </ul>
 </ul>
 </li>
@@ -107,20 +107,20 @@
     <div class="body col-md-12 content" role="main">
       
   </div>
-<div class=col-md-9 content><div class="section" id="box">
-<h1>Box<a class="headerlink" href="#box" title="Permalink to this headline">¶</a></h1>
+<div class=col-md-9 content><div class="section" id="adsorption">
+<h1>Adsorption<a class="headerlink" href="#adsorption" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="hgana.box.Box">
-<em class="property">class </em><code class="descclassname">hgana.box.</code><code class="descname">Box</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.box.Box" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class creates a hypothetical simulation box, to which molecules are
-added. Interaction of molecules are defined using an interaction matrix.</p>
+<dt id="hgana.adsorption.Adsorption">
+<em class="property">class </em><code class="descclassname">hgana.adsorption.</code><code class="descname">Adsorption</code><span class="sig-paren">(</span><em>size=[0, 0, 0]</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.adsorption.Adsorption" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class run calculates adsorption isotherms using the MC algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>size</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list</span></dt>
-<dd><p class="first last">Three dimensional cell count in each dimension</p>
+<dt><strong>size</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
+<dd><p class="first last">Three dimensional cell count in each dimension - leave empty if only
+plotting is intended.</p>
 </dd>
 </dl>
 </td>
@@ -134,8 +134,26 @@ added. Interaction of molecules are defined using an interaction matrix.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="hgana.box.Box.add_mol.html#hgana.box.Box.add_mol" title="hgana.box.Box.add_mol"><code class="xref py py-obj docutils literal"><span class="pre">add_mol</span></code></a>(num[,&nbsp;is_move,&nbsp;name,&nbsp;struct])</td>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption.add_mol.html#hgana.adsorption.Adsorption.add_mol" title="hgana.adsorption.Adsorption.add_mol"><code class="xref py py-obj docutils literal"><span class="pre">add_mol</span></code></a>(num[,&nbsp;is_move,&nbsp;name,&nbsp;struct])</td>
 <td>Add a molecule to the system.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="hgana.adsorption.Adsorption.plot.html#hgana.adsorption.Adsorption.plot" title="hgana.adsorption.Adsorption.plot"><code class="xref py py-obj docutils literal"><span class="pre">plot</span></code></a>(results_link,&nbsp;mol_x,&nbsp;mol_y,&nbsp;p_b_id)</td>
+<td>Visualize adsorption results.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption.run.html#hgana.adsorption.Adsorption.run" title="hgana.adsorption.Adsorption.run"><code class="xref py py-obj docutils literal"><span class="pre">run</span></code></a>(temp,&nbsp;steps_equi,&nbsp;steps_prod,&nbsp;out_link)</td>
+<td>Run Monte Carlo algorithm.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Private Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption._run_helper.html#hgana.adsorption.Adsorption._run_helper" title="hgana.adsorption.Adsorption._run_helper"><code class="xref py py-obj docutils literal"><span class="pre">_run_helper</span></code></a>(systems,&nbsp;temp,&nbsp;steps_equi,&nbsp;…)</td>
+<td>Run Monte Carlo algorithm.</td>
 </tr>
 </tbody>
 </table>
@@ -146,10 +164,10 @@ added. Interaction of molecules are defined using an interaction matrix.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="hgana.box.Box.set_im.html#hgana.box.Box.set_im" title="hgana.box.Box.set_im"><code class="xref py py-obj docutils literal"><span class="pre">set_im</span></code></a>(im)</td>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption.set_im.html#hgana.adsorption.Adsorption.set_im" title="hgana.adsorption.Adsorption.set_im"><code class="xref py py-obj docutils literal"><span class="pre">set_im</span></code></a>(im)</td>
 <td>Set interaction matrix.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.box.Box.set_interaction.html#hgana.box.Box.set_interaction" title="hgana.box.Box.set_interaction"><code class="xref py py-obj docutils literal"><span class="pre">set_interaction</span></code></a>(mol_a,&nbsp;mol_b,&nbsp;val)</td>
+<tr class="row-even"><td><a class="reference internal" href="hgana.adsorption.Adsorption.set_interaction.html#hgana.adsorption.Adsorption.set_interaction" title="hgana.adsorption.Adsorption.set_interaction"><code class="xref py py-obj docutils literal"><span class="pre">set_interaction</span></code></a>(mol_a,&nbsp;mol_b,&nbsp;val)</td>
 <td>Add interaction parameter between two molecules.</td>
 </tr>
 </tbody>
@@ -161,28 +179,28 @@ added. Interaction of molecules are defined using an interaction matrix.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="hgana.box.Box.get_cells.html#hgana.box.Box.get_cells" title="hgana.box.Box.get_cells"><code class="xref py py-obj docutils literal"><span class="pre">get_cells</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption.get_cells.html#hgana.adsorption.Adsorption.get_cells" title="hgana.adsorption.Adsorption.get_cells"><code class="xref py py-obj docutils literal"><span class="pre">get_cells</span></code></a>()</td>
 <td>Return the number of cells.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.box.Box.get_im.html#hgana.box.Box.get_im" title="hgana.box.Box.get_im"><code class="xref py py-obj docutils literal"><span class="pre">get_im</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="hgana.adsorption.Adsorption.get_im.html#hgana.adsorption.Adsorption.get_im" title="hgana.adsorption.Adsorption.get_im"><code class="xref py py-obj docutils literal"><span class="pre">get_im</span></code></a>()</td>
 <td>Return the interaction matrix.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="hgana.box.Box.get_interaction.html#hgana.box.Box.get_interaction" title="hgana.box.Box.get_interaction"><code class="xref py py-obj docutils literal"><span class="pre">get_interaction</span></code></a>(mol_a,&nbsp;mol_b)</td>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption.get_interaction.html#hgana.adsorption.Adsorption.get_interaction" title="hgana.adsorption.Adsorption.get_interaction"><code class="xref py py-obj docutils literal"><span class="pre">get_interaction</span></code></a>(mol_a,&nbsp;mol_b)</td>
 <td>Return the interaction parameter between to molecules.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.box.Box.get_mols.html#hgana.box.Box.get_mols" title="hgana.box.Box.get_mols"><code class="xref py py-obj docutils literal"><span class="pre">get_mols</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="hgana.adsorption.Adsorption.get_mols.html#hgana.adsorption.Adsorption.get_mols" title="hgana.adsorption.Adsorption.get_mols"><code class="xref py py-obj docutils literal"><span class="pre">get_mols</span></code></a>()</td>
 <td>Return the molecule dictionary.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="hgana.box.Box.get_name.html#hgana.box.Box.get_name" title="hgana.box.Box.get_name"><code class="xref py py-obj docutils literal"><span class="pre">get_name</span></code></a>(idx)</td>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption.get_name.html#hgana.adsorption.Adsorption.get_name" title="hgana.adsorption.Adsorption.get_name"><code class="xref py py-obj docutils literal"><span class="pre">get_name</span></code></a>(idx)</td>
 <td>Return the molecule name.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.box.Box.get_num.html#hgana.box.Box.get_num" title="hgana.box.Box.get_num"><code class="xref py py-obj docutils literal"><span class="pre">get_num</span></code></a>(idx)</td>
+<tr class="row-even"><td><a class="reference internal" href="hgana.adsorption.Adsorption.get_num.html#hgana.adsorption.Adsorption.get_num" title="hgana.adsorption.Adsorption.get_num"><code class="xref py py-obj docutils literal"><span class="pre">get_num</span></code></a>(idx)</td>
 <td>Return the molecule number.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="hgana.box.Box.get_size.html#hgana.box.Box.get_size" title="hgana.box.Box.get_size"><code class="xref py py-obj docutils literal"><span class="pre">get_size</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption.get_size.html#hgana.adsorption.Adsorption.get_size" title="hgana.adsorption.Adsorption.get_size"><code class="xref py py-obj docutils literal"><span class="pre">get_size</span></code></a>()</td>
 <td>Return the lattice size.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.box.Box.get_struct.html#hgana.box.Box.get_struct" title="hgana.box.Box.get_struct"><code class="xref py py-obj docutils literal"><span class="pre">get_struct</span></code></a>(idx)</td>
+<tr class="row-even"><td><a class="reference internal" href="hgana.adsorption.Adsorption.get_struct.html#hgana.adsorption.Adsorption.get_struct" title="hgana.adsorption.Adsorption.get_struct"><code class="xref py py-obj docutils literal"><span class="pre">get_struct</span></code></a>(idx)</td>
 <td>Return the molecule structure file link.</td>
 </tr>
 </tbody>

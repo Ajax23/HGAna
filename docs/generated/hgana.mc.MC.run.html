@@ -111,7 +111,7 @@
 <h1>MC.run<a class="headerlink" href="#mc-run" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="hgana.mc.MC.run">
-<code class="descclassname">MC.</code><code class="descname">run</code><span class="sig-paren">(</span><em>steps_equi, steps_prod, binding=[{'host': 0, 'guest': 1}], dt=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.mc.MC.run" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">MC.</code><code class="descname">run</code><span class="sig-paren">(</span><em>steps_equi, steps_prod, binding=[{'host': 0, 'guest': 1}], pb_f=[1000, 100], n_print=1000, out=['', 0], traj=['', 0]</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.mc.MC.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run Monte Carlo algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -124,11 +124,20 @@
 <dt><strong>steps_prod</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer</span></dt>
 <dd><p class="first last">Number of MC steps in the production phase</p>
 </dd>
-<dt><strong>binding</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list</span></dt>
+<dt><strong>binding</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
 <dd><p class="first last">Systems to calculate the binding probability for</p>
 </dd>
-<dt><strong>dt</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer, optional</span></dt>
-<dd><p class="first last">Output frequency in steps</p>
+<dt><strong>pb_f</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
+<dd><p class="first last">Length and frequency of probability calculation list</p>
+</dd>
+<dt><strong>n_print</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer, optional</span></dt>
+<dd><p class="first last">Number of steps to print output for</p>
+</dd>
+<dt><strong>out</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
+<dd><p class="first last">Probability output file link and frequency in steps</p>
+</dd>
+<dt><strong>traj</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
+<dd><p class="first last">Trajectory output file link and frequency in steps</p>
 </dd>
 </dl>
 </td>

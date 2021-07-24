@@ -65,7 +65,7 @@ class UserModelCase(unittest.TestCase):
     # Extract #
     ###########
     def test_extract(self):
-        self.skipTest("Temporary")
+        # self.skipTest("Temporary")
 
         hga.extract.extract("data/COLVAR", "output", com=0.9)
 
@@ -74,7 +74,7 @@ class UserModelCase(unittest.TestCase):
     # Affinity #
     ############
     def test_affinity(self):
-        self.skipTest("Temporary")
+        # self.skipTest("Temporary")
 
         # Count bound and unbound instances
         print()
@@ -141,7 +141,7 @@ class UserModelCase(unittest.TestCase):
         self.assertIsNone(box.add_mol(100000))
 
     def test_mc(self):
-        self.skipTest("Temporary")
+        # self.skipTest("Temporary")
         print()
 
         # Set up box

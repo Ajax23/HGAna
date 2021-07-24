@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>MC &#8212; HGAna 0.1.0 documentation</title>
+    <title>Adsorption.set_im &#8212; HGAna 0.1.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
@@ -76,7 +76,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">MC</a></li>
+<li><a class="reference internal" href="#">Adsorption.set_im</a></li>
 </ul>
 </ul>
 </li>
@@ -107,47 +107,22 @@
     <div class="body col-md-12 content" role="main">
       
   </div>
-<div class=col-md-9 content><div class="section" id="mc">
-<h1>MC<a class="headerlink" href="#mc" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="hgana.mc.MC">
-<em class="property">class </em><code class="descclassname">hgana.mc.</code><code class="descname">MC</code><span class="sig-paren">(</span><em>box</em>, <em>temp</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.mc.MC" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class run a Monte Carlo algorithm in order to calculate the
-probability of complex creating between two molecules.</p>
+<div class=col-md-9 content><div class="section" id="adsorption-set-im">
+<h1>Adsorption.set_im<a class="headerlink" href="#adsorption-set-im" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="hgana.adsorption.Adsorption.set_im">
+<code class="descclassname">Adsorption.</code><code class="descname">set_im</code><span class="sig-paren">(</span><em>im</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.adsorption.Adsorption.set_im" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set interaction matrix.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>box</strong> <span class="classifier-delimiter">:</span> <span class="classifier">Box</span></dt>
-<dd><p class="first last">Theoretical box system</p>
-</dd>
-<dt><strong>temp</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
-<dd><p class="first last">Simulation temperature in Kelvin</p>
+<dt><strong>im</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dictionary</span></dt>
+<dd><p class="first last">Interaction matrix</p>
 </dd>
 </dl>
 </td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="hgana.mc.MC._metropolis.html#hgana.mc.MC._metropolis" title="hgana.mc.MC._metropolis"><code class="xref py py-obj docutils literal"><span class="pre">_metropolis</span></code></a>(dE)</td>
-<td>Performs the acceptance criterion of the Metropolis–Hastings algorithm.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.mc.MC._move.html#hgana.mc.MC._move" title="hgana.mc.MC._move"><code class="xref py py-obj docutils literal"><span class="pre">_move</span></code></a>(mol_id,&nbsp;old,&nbsp;new)</td>
-<td>Move molecule from an old cell to a new cell.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="hgana.mc.MC._run_phase.html#hgana.mc.MC._run_phase" title="hgana.mc.MC._run_phase"><code class="xref py py-obj docutils literal"><span class="pre">_run_phase</span></code></a>(steps,&nbsp;binding,&nbsp;pb_f,&nbsp;n_print,&nbsp;…)</td>
-<td>Run Monte Carlo algorithm for a number of steps.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.mc.MC.run.html#hgana.mc.MC.run" title="hgana.mc.MC.run"><code class="xref py py-obj docutils literal"><span class="pre">run</span></code></a>(steps_equi,&nbsp;steps_prod[,&nbsp;binding,&nbsp;pb_f,&nbsp;…])</td>
-<td>Run Monte Carlo algorithm.</td>
 </tr>
 </tbody>
 </table>

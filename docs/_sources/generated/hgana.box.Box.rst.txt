@@ -22,6 +22,7 @@ Box
 
   .. autosummary::
 
+     ~Box.set_im
      ~Box.set_interaction
 
 

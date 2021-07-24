@@ -7,8 +7,8 @@
       <div class="col-md-10">
         <div style="text-align: justify; text-justify: inter-word;">
 
-Binding affinity analysis of Cyclodextrin
-=========================================
+Binding Affinity
+================
 
 .. code-block:: python
 

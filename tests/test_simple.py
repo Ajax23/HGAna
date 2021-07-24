@@ -182,7 +182,7 @@ class UserModelCase(unittest.TestCase):
         ads = hga.Adsorption([10, 10, 10])
         ads.add_mol([1, 5, 10], is_move=False)
         # ads.add_mol([x for x in range(1, 20+1, 5)])
-        ads.add_mol([x for x in range(1, 100+1, 1)])
+        ads.add_mol([x for x in range(1, 100+1, 10)])
         ads.set_interaction(0, 1, -15)
         # ads.set_interaction(0, 2, -10)
 

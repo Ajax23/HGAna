@@ -1,5 +1,5 @@
 ################################################################################
-# Adsorption Module                                                            #
+# Adsorption Class                                                             #
 #                                                                              #
 """Parallelization of the MC algorithm to calcuilate adsorption isotherms."""
 ################################################################################

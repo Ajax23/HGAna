@@ -178,16 +178,17 @@ class UserModelCase(unittest.TestCase):
         # self.skipTest("Temporary")
         print()
 
-        # Initialize
+        # Test simulation
         ads = hga.Adsorption([10, 10, 10])
-        ads.add_mol([1, 5, 10], is_move=False)
+        ads.add_mol([1, 10], is_move=False)
         # ads.add_mol([x for x in range(1, 20+1, 5)])
-        ads.add_mol([x for x in range(1, 100+1, 10)])
+        ads.add_mol([x for x in range(1, 100+1, 20)])
         ads.set_interaction(0, 1, -15)
         # ads.set_interaction(0, 2, -10)
 
         # Run single
         results = ads.run(298, 100000, 10000, "output/ads.obj", binding=[{"host": 0, "guest": 1}], pb_f=[1000, 50], n_print=1000, is_parallel=True)
+        results = ads.run(298, 100000, 10000, "output/ads.obj", binding=[{"host": 0, "guest": 1}], pb_f=[1000, 50], n_print=1000, is_parallel=False)
         # print(results)
 
         # Plot
@@ -195,6 +196,16 @@ class UserModelCase(unittest.TestCase):
         ads.plot("output/ads.obj", 1, 0, (0, 1))
         plt.savefig("output/ads.pdf", format="pdf", dpi=1000)
         # plt.show()
+
+        # Test special cases
+        ads = hga.Adsorption([10, 10, 10])
+        ads.add_mol(1, is_move=False)
+        ads.add_mol([1, 10, 20])
+        ads.set_interaction(0, 1, -15)
+        results = ads.run(298, 100000, 10000, "output/ads.obj", binding=[{"host": 0, "guest": 1}], pb_f=[1000, 50], n_print=1000, is_parallel=True)
+
+        # Test error
+        ads.add_mol(1000000000)
 
 
 if __name__ == '__main__':

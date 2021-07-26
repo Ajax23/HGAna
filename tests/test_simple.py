@@ -187,14 +187,20 @@ class UserModelCase(unittest.TestCase):
         # ads.set_interaction(0, 2, -10)
 
         # Run single
-        results = ads.run(298, 100000, 10000, "output/ads.obj", binding=[{"host": 0, "guest": 1}], pb_f=[1000, 50], n_print=1000, is_parallel=True)
-        results = ads.run(298, 100000, 10000, "output/ads.obj", binding=[{"host": 0, "guest": 1}], pb_f=[1000, 50], n_print=1000, is_parallel=False)
+        ads.run(298, 100000, 10000, "output/ads.obj", binding=[{"host": 0, "guest": 1}, {"host": 1, "guest": 0}], pb_f=[1000, 50], n_print=1000, is_parallel=True)
+        ads.run(298, 100000, 10000, "output/ads.obj", binding=[{"host": 0, "guest": 1}, {"host": 1, "guest": 0}], pb_f=[1000, 50], n_print=1000, is_parallel=False)
         # print(results)
 
-        # Plot
+        # Plot pb
         plt.figure(figsize=(6, 4))
-        ads.plot("output/ads.obj", 1, 0, (0, 1))
-        plt.savefig("output/ads.pdf", format="pdf", dpi=1000)
+        ads.plot_pb("output/ads.obj", 1, 0, (0, 1))
+        plt.savefig("output/ads_pb.pdf", format="pdf", dpi=1000)
+        # plt.show()
+
+        # Plot number
+        plt.figure(figsize=(6, 4))
+        ads.plot_ads("output/ads.obj", {"host": 0, "guest": 1}, {"mol_id": 1, "p_b": (1, 0), "bu": "u"}, {"mol_id": 1, "p_b": (1, 0), "bu": "b"})
+        plt.savefig("output/ads_num.pdf", format="pdf", dpi=1000)
         # plt.show()
 
         # Test special cases
@@ -202,7 +208,7 @@ class UserModelCase(unittest.TestCase):
         ads.add_mol(1, is_move=False)
         ads.add_mol(1)
         ads.set_interaction(0, 1, -15)
-        results = ads.run(298, 100000, 10000, "output/ads.obj", binding=[{"host": 0, "guest": 1}], pb_f=[1000, 50], n_print=1000, is_parallel=True)
+        ads.run(298, 100000, 10000, "output/ads.obj", binding=[{"host": 0, "guest": 1}], pb_f=[1000, 50], n_print=1000, is_parallel=True)
 
         # Test error
         ads.add_mol(1000000000)

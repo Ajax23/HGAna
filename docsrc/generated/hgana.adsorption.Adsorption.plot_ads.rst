@@ -5,9 +5,9 @@
     </div>
     <div class=col-md-9 content>
 
-Adsorption\.plot
-================
+Adsorption\.plot\_ads
+=====================
 
 .. currentmodule:: hgana.adsorption
 
-.. automethod:: Adsorption.plot
+.. automethod:: Adsorption.plot_ads

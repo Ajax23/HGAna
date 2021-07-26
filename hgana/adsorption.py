@@ -178,7 +178,7 @@ class Adsorption(Box):
         # Return results
         return res_dict
 
-    def plot(self, results_link, mol_x, mol_y, p_b_id):
+    def plot_pb(self, results_link, mol_x, mol_y, p_b_id):
         """Visualize adsorption results.
 
         Parameters
@@ -213,3 +213,67 @@ class Adsorption(Box):
             sns.lineplot(x=x, y=p_b)
 
         plt.legend(y)
+
+    def plot_ads(self, results_link, system, val_x, val_y, is_plot=True):
+        """Visualize adsorption numbers for results.
+
+        Parameters
+        ----------
+        results : string
+            File link to results object
+        system : dictionary
+            host **host** and guest **guest** molecule for system search
+        val_x : dictionary
+            Molecule id **mol_id**, p_b value **p_b**, and bound/unbound **bu** to show on x-axis
+        val_y : dictionary
+            Molecule id **mol_id**, p_b value **p_b**, and bound/unbound **bu** to show on y-axis
+        is_plot : bool, optional
+            True to plot lines
+
+        Returns
+        -------
+        plot_dict : dictionary
+            Dictionary with host number as keys and x, y lists as values
+        """
+        # Load results
+        res = utils.load(results_link)
+
+        # Get data
+        mols = res[0].get_mols()
+        results = {key: val["p_b"] for key, val in res[1].items()}
+
+        # Get molecule numbers
+        mol_x = val_x["mol_id"]
+        mol_y = val_x["mol_id"]
+        mol_h = system["host"]
+        mol_g = system["guest"]
+        num_h = mols[mol_h]["num"]
+        num_g = mols[mol_g]["num"]
+
+        # Run through systems
+        plot_dict = {}
+        for i in num_h:
+            x = []
+            y = []
+            for j in num_g:
+                for sys, result in results.items():
+                    if sys[mol_h] == i and sys[mol_g] == j:
+                        num_x = i if mol_x==mol_h else j
+                        num_y = i if mol_y==mol_h else j
+                        x.append(np.mean(result[val_x["p_b"]])*num_x if val_x["bu"]=="b" else ((1-np.mean(result[val_x["p_b"]]))*num_x))
+                        y.append(np.mean(result[val_y["p_b"]])*num_y if val_y["bu"]=="b" else ((1-np.mean(result[val_y["p_b"]]))*num_y))
+
+            # Sort
+            x.sort()
+            y.sort()
+            plot_dict[i] = [x, y]
+
+        # Plot
+        if is_plot:
+            legend = []
+            for leg, xy in plot_dict.items():
+                sns.lineplot(x=xy[0], y=xy[1])
+                legend.append(leg)
+            plt.legend(legend)
+
+        return plot_dict

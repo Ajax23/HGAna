@@ -15,7 +15,8 @@ Adsorption
   .. autosummary::
 
     ~Adsorption.add_mol
-    ~Adsorption.plot
+    ~Adsorption.plot_ads
+    ~Adsorption.plot_pb
     ~Adsorption.run
 
 

@@ -53,7 +53,7 @@ Plot Results
 
 .. code-block:: python
 
-    ads.plot("output/ads.obj", 1, 0, (0, 1))
+    ads.plot_pb("output/ads.obj", 1, 0, (0, 1))
 
 
 

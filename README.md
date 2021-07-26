@@ -2,7 +2,7 @@
 
 [![PyPI Version](https://img.shields.io/badge/PyPI-0.1.0-orange)](https://pypi.org/project/HGAna/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/Ajax23/HGAna/blob/master/LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4525195.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5137390.svg)](https://doi.org/10.5281/zenodo.5137390)
 [![Build Status](https://github.com/Ajax23/HGAna/actions/workflows/workflow.yml/badge.svg)](https://github.com/Ajax23/HGAna/actions/workflows/workflow.yml)
 [![codecov](https://codecov.io/gh/Ajax23/HGAna/branch/master/graph/badge.svg)](https://codecov.io/gh/Ajax23/HGAna)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Ajax23/HGAna.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Ajax23/HGAna/context:python)

@@ -112,7 +112,7 @@
 <h1>restraints<a class="headerlink" href="#restraints" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hgana.extract.restraints">
-<code class="descclassname">hgana.extract.</code><code class="descname">restraints</code><span class="sig-paren">(</span><em>file_link</em>, <em>out_link</em>, <em>conditions={1: [0.0</em>, <em>0.7]}</em>, <em>atom_list={'A': 148</em>, <em>'B': 150</em>, <em>'C': 151</em>, <em>'a': 22</em>, <em>'b': 85</em>, <em>'c': 127}</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.extract.restraints" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">hgana.extract.</code><code class="descname">restraints</code><span class="sig-paren">(</span><em>file_link</em>, <em>out_link='restraints.top'</em>, <em>conditions={1: [0.0</em>, <em>0.7]}</em>, <em>atom_list={'A': 148</em>, <em>'B': 150</em>, <em>'C': 151</em>, <em>'a': 22</em>, <em>'b': 85</em>, <em>'c': 127}</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.extract.restraints" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract restraints for decoupling simulations of the specified state
 within a specific error.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -123,7 +123,7 @@ within a specific error.</p>
 <dt><strong>file_link</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
 <dd><p class="first last">File link to COLVAR file</p>
 </dd>
-<dt><strong>out_link</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dt><strong>out_link</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, optional</span></dt>
 <dd><p class="first last">Link to output folder</p>
 </dd>
 <dt><strong>conditions</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dictionary, optional</span></dt>

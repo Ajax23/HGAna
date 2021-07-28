@@ -66,8 +66,11 @@ class UserModelCase(unittest.TestCase):
     ###########
     def test_extract(self):
         # self.skipTest("Temporary")
+        print()
 
-        hga.extract.extract("data/COLVAR", "output", com=0.9)
+        structs = hga.extract.extract("data/COLVAR", "output", conditions={1: [0, 0.2], 2: [0.2, 0.35]}, num=3)
+
+        self.assertEqual([round(x, 4) for x in structs[30000]], [0.0648, 0.2877])
 
     def test_dd(self):
         # self.skipTest("Temporary")

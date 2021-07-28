@@ -396,6 +396,76 @@ def time(data_link, cutoff, temp, volume, num_mol=1, is_std=False):
     return pd.DataFrame([delta_g], columns=idx)
 
 
+def double_decoupling(temp, dG_hydr, dG_host, restraints, forces={"K_r": 500, "K_theta_A" : 50, "K_theta_B" : 50, "K_phi_A" : 50, "K_phi_B" : 50, "K_phi_C" : 50}):
+    """Calculate the double decoupling free enthalpy difference according to
+
+    .. math::
+
+        \\Delta G^\\text{DD}=\\Delta G_{\\mathrm{u\\rightarrow b}}^\\mathrm{M}=-\\Delta G_\\mathrm{hyd}^\\mathrm{M}-\\Delta G_{\\mathrm{b\\rightarrow tor}}^{\\mathrm{M\\rightarrow M'}}-\\Delta G_{\\mathrm{tor}}^{\\mathrm{M'}}.
+
+    Hereby :math:`\\Delta G_\\mathrm{hyd}^\\mathrm{M}` is the hydration enthalpy
+    energy from the unbound state, :math:`\\Delta G_{\\mathrm{b\\rightarrow tor}}^{\\mathrm{M\\rightarrow M'}}`
+    the free enthalpy difference from turning on orientational and translational
+    restrants (tor) and deactivating the intramolecular interactions of the
+    guest molecule with its surroundings. The free enthalpy differnece due to
+    restraints :math:`\\Delta G_{\\mathrm{tor}}^{\\mathrm{M'}}` is then
+    subtracted. This contribution can be calculated analytaically as proposed
+    by Boresch and Karplus
+
+    .. math::
+
+            \\Delta G_{\\mathrm{tor}}^{\\mathrm{M'}}=-RT\\ln\\left[\\frac{8\\pi V^0(K_rK_{\\theta_A}K_{\\theta_B}K_{\\phi_A}K_{\\phi_B}K_{\\phi_C})^\\frac{1}{2}}{r_{aA,0}^2\\sin\\theta_{A,0}\\sin\\theta_{B,0}(2\\pi RT)^3}\\right].
+
+    Parameters
+    ----------
+    temp : float
+        System temperature in K
+    dG_hydr : float
+        Hydration free enthalpy :math:`\\Delta G_\\mathrm{hyd}^\\mathrm{M}` in kJ/mol
+    dG_host : float
+        Free enthalpy difference from turning on restraints and deactivating
+        intramolecular interactions :math:`\\Delta G_{\\mathrm{b\\rightarrow tor}}^{\\mathrm{M\\rightarrow M'}}`
+        in kJ/mol
+    restraints : dictionary
+        Restraints applied during simulation
+    forces : dictionary, optional
+        Restraint forces applied during simulation
+
+    Returns
+    -------
+    dG : dictionary
+        Dictionary containing the binding free enthalpy **dG_tot** and the
+        analytical free enthalpy difference due to restraints **dG_rest**
+    """
+    # Initialize
+    V = 1.661  # nm^3
+    R = 8.314e-3   # kJ/K/mol
+    T = temp  # K
+    pi = np.pi
+    to_rad = pi/180
+
+    # Set restraints
+    r_aA_0    = restraints["r_aA"]         # nm
+    theta_A_0 = restraints["theta_A"]*to_rad  # rad
+    theta_B_0 = restraints["theta_B"]*to_rad  # rad
+
+    # Set forces
+    K_r = forces["K_r"]  # kJ/mol/nm^2
+    K_theta_A = forces["K_theta_A"]  # kJ/mol/rad^2
+    K_theta_B = forces["K_theta_B"]  # kJ/mol/rad^2
+    K_phi_A = forces["K_phi_A"]  # kJ/mol/rad^2
+    K_phi_B = forces["K_phi_B"]  # kJ/mol/rad^2
+    K_phi_C = forces["K_phi_C"]  # kJ/mol/rad^2
+
+    # Calculate restraint
+    dG_rest = -R*T*np.log((8*pi**2*V*(K_r*K_theta_A*K_theta_B*K_phi_A*K_phi_B*K_phi_C)**0.5)/(r_aA_0**2*np.sin(theta_A_0)*np.sin(theta_B_0)*(2*pi*R*T)**3))
+
+    # Calculate binding free enthalpy
+    dG_tot = -dG_hydr-dG_host-dG_rest
+
+    return {"dG_tot": dG_tot, "dG_rest": dG_rest}
+
+
 def time_series(link_colvar, com, dt=100):
     """This function plots the bound and unbound instances over time for a given
     spatial bound cutoff.

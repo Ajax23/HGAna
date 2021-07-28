@@ -3,14 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>hgana.affinity &#8212; HGAna 0.1.0 documentation</title>
+    <title>hgana.affinity &#8212; HGAna 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1.0',
+        VERSION:     '0.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -117,19 +117,22 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="hgana.affinity.hist.html#hgana.affinity.hist" title="hgana.affinity.hist"><code class="xref py py-obj docutils literal"><span class="pre">hist</span></code></a>(link_colvar,&nbsp;column[,&nbsp;legend,&nbsp;conditions])</td>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.affinity.double_decoupling.html#hgana.affinity.double_decoupling" title="hgana.affinity.double_decoupling"><code class="xref py py-obj docutils literal"><span class="pre">double_decoupling</span></code></a>(temp,&nbsp;dG_hydr,&nbsp;dG_host,&nbsp;…)</td>
+<td>Calculate the double decoupling free enthalpy difference according to</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="hgana.affinity.hist.html#hgana.affinity.hist" title="hgana.affinity.hist"><code class="xref py py-obj docutils literal"><span class="pre">hist</span></code></a>(link_colvar,&nbsp;column[,&nbsp;legend,&nbsp;conditions])</td>
 <td>This function plots a histogram of the provided COLVAR file.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.affinity.number.html#hgana.affinity.number" title="hgana.affinity.number"><code class="xref py py-obj docutils literal"><span class="pre">number</span></code></a>(data_link,&nbsp;temp,&nbsp;volume[,&nbsp;num_mol])</td>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.affinity.number.html#hgana.affinity.number" title="hgana.affinity.number"><code class="xref py py-obj docutils literal"><span class="pre">number</span></code></a>(data_link,&nbsp;temp,&nbsp;volume[,&nbsp;num_mol])</td>
 <td>This function calculates the binding affinity <span class="math">\(\Delta G_N\)</span>.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="hgana.affinity.sample.html#hgana.affinity.sample" title="hgana.affinity.sample"><code class="xref py py-obj docutils literal"><span class="pre">sample</span></code></a>(link_colvar,&nbsp;link_out,&nbsp;com,&nbsp;orient[,&nbsp;…])</td>
+<tr class="row-even"><td><a class="reference internal" href="hgana.affinity.sample.html#hgana.affinity.sample" title="hgana.affinity.sample"><code class="xref py py-obj docutils literal"><span class="pre">sample</span></code></a>(link_colvar,&nbsp;link_out,&nbsp;com,&nbsp;orient[,&nbsp;…])</td>
 <td>This function samples the bound and unbound instance of a molecule and cyclodextrin.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.affinity.time.html#hgana.affinity.time" title="hgana.affinity.time"><code class="xref py py-obj docutils literal"><span class="pre">time</span></code></a>(data_link,&nbsp;cutoff,&nbsp;temp,&nbsp;volume[,&nbsp;…])</td>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.affinity.time.html#hgana.affinity.time" title="hgana.affinity.time"><code class="xref py py-obj docutils literal"><span class="pre">time</span></code></a>(data_link,&nbsp;cutoff,&nbsp;temp,&nbsp;volume[,&nbsp;…])</td>
 <td>This function calculates the binding affinity <span class="math">\(\Delta G_T\)</span>.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="hgana.affinity.time_series.html#hgana.affinity.time_series" title="hgana.affinity.time_series"><code class="xref py py-obj docutils literal"><span class="pre">time_series</span></code></a>(link_colvar,&nbsp;com[,&nbsp;dt])</td>
+<tr class="row-even"><td><a class="reference internal" href="hgana.affinity.time_series.html#hgana.affinity.time_series" title="hgana.affinity.time_series"><code class="xref py py-obj docutils literal"><span class="pre">time_series</span></code></a>(link_colvar,&nbsp;com[,&nbsp;dt])</td>
 <td>This function plots the bound and unbound instances over time for a given spatial bound cutoff.</td>
 </tr>
 </tbody>

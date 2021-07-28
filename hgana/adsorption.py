@@ -214,8 +214,8 @@ class Adsorption(Box):
 
         plt.legend(y)
 
-    def plot_ads(self, results_link, system, val_x, val_y, is_plot=True):
-        """Visualize adsorption numbers for results.
+    def plot_iso(self, results_link, system, val_x, val_y, is_plot=True):
+        """Visualize adsorption isotherm based on molecule number.
 
         Parameters
         ----------

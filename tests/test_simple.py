@@ -69,6 +69,21 @@ class UserModelCase(unittest.TestCase):
 
         hga.extract.extract("data/COLVAR", "output", com=0.9)
 
+    def test_dd(self):
+        # self.skipTest("Temporary")
+        print()
+
+        restraints = hga.extract.restraints("data/COLVAR", "output/restraints.top", conditions={1: [0, 0.7], 2: [0, 0.4]})
+        self.assertEqual(restraints, {'r_aA': 0.61, 'theta_A': 17.82, 'theta_B': 82.34, 'phi_A': 24.73, 'phi_B': -29.28, 'phi_C': -2.41})
+
+        dG = hga.affinity.double_decoupling(350, -31.06, 84.17, {'r_aA': 0.64, 'theta_A': 24.65, 'theta_B': 72.62, 'phi_A': -40.87, 'phi_B': 33.72, 'phi_C': 0.32})
+        self.assertEqual(round(dG["dG_tot"], 2), -21.51)
+        self.assertEqual(round(dG["dG_rest"], 2), -31.60)
+
+        dG = hga.affinity.double_decoupling(350, 0.10, 44.73, restraints)
+        self.assertEqual(round(dG["dG_tot"], 2), -12.16)
+        self.assertEqual(round(dG["dG_rest"], 2), -32.67)
+
 
     ############
     # Affinity #
@@ -199,7 +214,7 @@ class UserModelCase(unittest.TestCase):
 
         # Plot number
         plt.figure(figsize=(6, 4))
-        ads.plot_ads("output/ads.obj", {"host": 0, "guest": 1}, {"mol_id": 1, "p_b": (1, 0), "bu": "u"}, {"mol_id": 1, "p_b": (1, 0), "bu": "b"})
+        ads.plot_iso("output/ads.obj", {"host": 0, "guest": 1}, {"mol_id": 1, "p_b": (1, 0), "bu": "u"}, {"mol_id": 1, "p_b": (1, 0), "bu": "b"})
         plt.savefig("output/ads_num.pdf", format="pdf", dpi=1000)
         # plt.show()
 

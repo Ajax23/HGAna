@@ -96,37 +96,40 @@ class UserModelCase(unittest.TestCase):
 
         # Count bound and unbound instances
         print()
-        hga.affinity.sample("data/COLVAR", "output/count.obj", [1, 0.5], [2, 0.46], is_force=True)
-        hga.affinity.sample("data/COLVAR", "output/count.obj", [1, 0.9], [2, 0.20], is_force=False)
+        hga.affinity.sample("data/COLVAR", "output/count.obj", conditions={1: [0, 0.5]})
 
         # Calculate binding affinity through brute-force summation
         print()
         table = hga.affinity.number("output/count.obj", 298.15, 31.3707e-27)
+        self.assertEqual(round(table["kJ/mol"], 4), -12.7998)
+        self.assertEqual(round(table["kcal/mol"], 4), -3.0575)
         print(table)
 
         # Calculate binding affinity through association and dissociation rates
         print()
-        tables = [hga.affinity.time("output/count.obj", cutoff, 298.15, 31.3707e-27) for cutoff in [100*x for x in range(11)]]
+        tables = [hga.affinity.time("output/count.obj", 298.15, 31.3707e-27, dt) for dt in [100*x for x in range(11)]]
         table = pd.concat(tables)
+        self.assertEqual(round(table.iloc[0]["dG (kJ/mol)"], 4), -12.7998)
+        self.assertEqual(round(table.iloc[0]["dG (kcal/mol)"], 4), -3.0575)
         print(table)
 
         # Test standard deviation
         print()
-        tables = [hga.affinity.time("output/count.obj", cutoff, 298.15, 31.3707e-27, is_std=True) for cutoff in [100*x for x in range(11)]]
+        tables = [hga.affinity.time("output/count.obj", 298.15, 31.3707e-27, dt, is_std=True) for dt in [100*x for x in range(11)]]
         table = pd.concat(tables)
         print(table)
 
         # Plot histogram
         plt.figure(figsize=(6, 4))
-        hga.affinity.hist("data/COLVAR", [1, 2], ["Centers of Mass", "Oxygenes"], conditions={2: [1, 0.5]})
+        hga.affinity.plot_hist("data/COLVAR", [1, 2], ["Centers of Mass", "Oxygenes"], conditions={2: [1, 0.5]})
         plt.savefig("output/affinity.pdf", format="pdf", dpi=1000)
         # plt.show()
 
         # Plot time series
         plt.figure(figsize=(6, 4))
-        hga.affinity.time_series("data/COLVAR", [1, 2])
+        hga.affinity.plot_time("data/COLVAR", [1, 2])
         plt.savefig("output/time_series.pdf", format="pdf", dpi=1000)
-        # plt.show()
+        plt.show()
 
     ######
     # MC #

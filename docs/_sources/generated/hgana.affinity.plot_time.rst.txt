@@ -5,9 +5,9 @@
     </div>
     <div class=col-md-9 content>
 
-time\_series
-============
+plot\_time
+==========
 
 .. currentmodule:: hgana.affinity
 
-.. autofunction:: time_series
+.. autofunction:: plot_time

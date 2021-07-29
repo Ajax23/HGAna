@@ -17,7 +17,7 @@ Binding Affinity
 
 .. code-block:: python
 
-  md.cd.affinity.hist("COLVAR", [1, 2], ["Centers of Mass", "Oxygenes"])
+  hga.affinity.hist("COLVAR", [1, 2], ["Centers of Mass", "Oxygenes"])
 
 .. figure::  /pics/affinity.svg
   :align: center
@@ -27,12 +27,12 @@ Binding Affinity
 
 .. code-block:: python
 
-  md.cd.affinity.sample("COLVAR", "count.obj", [1, 0.5], [2, 0.46], is_force=True)
+  hga.affinity.sample("COLVAR", "count.obj", [1, 0.5], [2, 0.46], is_force=True)
 
 
 .. code-block:: python
 
-  md.cd.affinity.number("count.obj", 298.15, 31.3707e-27)
+  hga.affinity.number("count.obj", 298.15, 31.3707e-27)
 
 .. raw:: html
 
@@ -70,7 +70,7 @@ Binding Affinity
 
 .. code-block:: python
 
-  tables = [md.cd.affinity.time("data/cyclodextrin/count.obj", cutoff, 298.15, 31.3707e-27) for cutoff in [100*x for x in range(11)]]
+  tables = [hga.affinity.time("data/cyclodextrin/count.obj", cutoff, 298.15, 31.3707e-27) for cutoff in [100*x for x in range(11)]]
 
   table = pd.concat(tables)
 

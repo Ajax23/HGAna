@@ -5,13 +5,19 @@ hgana\.affinity
 
 
 
-  .. rubric:: Functions
+  .. rubric:: Calculation Functions
 
   .. autosummary::
 
     double_decoupling
-    hist
     number
     sample
     time
-    time_series
+
+
+  .. rubric:: Visualization
+
+  .. autosummary::
+
+    plot_hist
+    plot_time

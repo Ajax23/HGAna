@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>hist &#8212; HGAna 0.1.1 documentation</title>
+    <title>plot_hist &#8212; HGAna 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
@@ -77,7 +77,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">hist</a></li>
+<li><a class="reference internal" href="#">plot_hist</a></li>
 </ul>
 </ul>
 </li>
@@ -108,11 +108,11 @@
     <div class="body col-md-12 content" role="main">
       
   </div>
-<div class=col-md-9 content><div class="section" id="hist">
-<h1>hist<a class="headerlink" href="#hist" title="Permalink to this headline">¶</a></h1>
+<div class=col-md-9 content><div class="section" id="plot-hist">
+<h1>plot_hist<a class="headerlink" href="#plot-hist" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="hgana.affinity.hist">
-<code class="descclassname">hgana.affinity.</code><code class="descname">hist</code><span class="sig-paren">(</span><em>link_colvar</em>, <em>column</em>, <em>legend=None</em>, <em>conditions=None</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.affinity.hist" title="Permalink to this definition">¶</a></dt>
+<dt id="hgana.affinity.plot_hist">
+<code class="descclassname">hgana.affinity.</code><code class="descname">plot_hist</code><span class="sig-paren">(</span><em>link_colvar</em>, <em>column</em>, <em>legend=None</em>, <em>conditions=None</em>, <em>dt=1</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.affinity.plot_hist" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function plots a histogram of the provided COLVAR file. For given
 columns.</p>
 <p>Conditions are dictionaries with the key being the column to which the
@@ -134,6 +134,9 @@ first entry the column id and the second entry, the cutoff value.</p>
 </dd>
 <dt><strong>conditions</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dictionary, None, optional</span></dt>
 <dd><p class="first last">Conditions for plotting</p>
+</dd>
+<dt><strong>dt</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer, optional</span></dt>
+<dd><p class="first last">Step size in number of frames</p>
 </dd>
 </dl>
 </td>

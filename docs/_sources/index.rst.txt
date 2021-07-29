@@ -11,7 +11,7 @@ Analysis Tool for Host-Guest Binding
 
 This python package analyzes host guest binding simulations.
 To see the code or report a bug, please visit the `GitHub repository
-<www.github.com/Ajax23/HGAna>`_.
+<https://www.github.com/Ajax23/HGAna>`_.
 
 
 .. raw:: html

@@ -112,7 +112,7 @@
 <h1>time<a class="headerlink" href="#time" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hgana.affinity.time">
-<code class="descclassname">hgana.affinity.</code><code class="descname">time</code><span class="sig-paren">(</span><em>data_link</em>, <em>cutoff</em>, <em>temp</em>, <em>volume</em>, <em>num_mol=1</em>, <em>is_std=False</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.affinity.time" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">hgana.affinity.</code><code class="descname">time</code><span class="sig-paren">(</span><em>data_link</em>, <em>T</em>, <em>V</em>, <em>dt</em>, <em>is_std=False</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.affinity.time" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function calculates the binding affinity <span class="math">\(\Delta G_T\)</span>.
 This is done by determining the association rate constant <span class="math">\(k_\text{On}\)</span>
 and dissociation rate constant <span class="math">\(k_\text{Off}\)</span></p>
@@ -175,17 +175,14 @@ the binding affinity can be determined by</p>
 <dt><strong>data_link</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
 <dd><p class="first last">Sampled affinity object</p>
 </dd>
-<dt><strong>cutoff</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer</span></dt>
-<dd><p class="first last">Time calculation cut-off in <span class="math">\(\text{ps}\)</span></p>
-</dd>
-<dt><strong>temp</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dt><strong>T</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
 <dd><p class="first last">Simulated temperature in <span class="math">\(\text{K}\)</span></p>
 </dd>
-<dt><strong>volume</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dt><strong>V</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
 <dd><p class="first last">Simulation box volume in <span class="math">\(\text{m}^3\)</span></p>
 </dd>
-<dt><strong>num_mol</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer, optional</span></dt>
-<dd><p class="first last">Number of molecules</p>
+<dt><strong>dt</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer</span></dt>
+<dd><p class="first last">Time calculation cut-off in frames</p>
 </dd>
 <dt><strong>is_std</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
 <dd><p class="first last">True to calculate standard deviation</p>

@@ -5,9 +5,9 @@
     </div>
     <div class=col-md-9 content>
 
-hist
-====
+plot\_hist
+==========
 
 .. currentmodule:: hgana.affinity
 
-.. autofunction:: hist
+.. autofunction:: plot_hist

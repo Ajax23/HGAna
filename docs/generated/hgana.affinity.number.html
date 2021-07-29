@@ -112,16 +112,15 @@
 <h1>number<a class="headerlink" href="#number" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hgana.affinity.number">
-<code class="descclassname">hgana.affinity.</code><code class="descname">number</code><span class="sig-paren">(</span><em>data_link</em>, <em>temp</em>, <em>volume</em>, <em>num_mol=1</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.affinity.number" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">hgana.affinity.</code><code class="descname">number</code><span class="sig-paren">(</span><em>data_link</em>, <em>T</em>, <em>V</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.affinity.number" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function calculates the binding affinity <span class="math">\(\Delta G_N\)</span>. This
 is done through a brute force summation of all instances the cyclodextrin
 is occupied <span class="math">\(N_b\)</span> and how often it is not <span class="math">\(N_u\)</span>.
 These numbers are then used to calculate the binding free energy</p>
 <div class="math">
-\[\Delta G_N=-RT\ln\frac{N_b}{N_u}-RT\ln\frac{V}{NV_0}\]</div>
-<p>with number of solute molecules <span class="math">\(N\)</span>, standard gas constant
-<span class="math">\(R\)</span>, temperature <span class="math">\(T\)</span>, simulation box volume <span class="math">\(V\)</span> and
-standard state volume <span class="math">\(V_0=1.661 \text{nm}^3\)</span>.</p>
+\[\Delta G_N=-RT\ln\frac{N_b}{N_u}-RT\ln\frac{V}{V_0}\]</div>
+<p>with standard gas constant <span class="math">\(R\)</span>, temperature <span class="math">\(T\)</span>, simulation box
+volume <span class="math">\(V\)</span> and standard state volume <span class="math">\(V_0=1.661 \text{nm}^3\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -130,23 +129,21 @@ standard state volume <span class="math">\(V_0=1.661 \text{nm}^3\)</span>.</p>
 <dt><strong>data_link</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
 <dd><p class="first last">Sampled affinity object</p>
 </dd>
-<dt><strong>temp</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dt><strong>T</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
 <dd><p class="first last">Simulated temperature in <span class="math">\(\text{K}\)</span></p>
 </dd>
-<dt><strong>volume</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dt><strong>V</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
 <dd><p class="first last">Simulation box volume in <span class="math">\(\text{m}^3\)</span></p>
-</dd>
-<dt><strong>num_mol</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer, optional</span></dt>
-<dd><p class="first last">Number of molecules</p>
 </dd>
 </dl>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>table</strong> <span class="classifier-delimiter">:</span> <span class="classifier">DataFrame</span></dt>
-<dd><p class="first last">Pandas DataFrame containing the binding affinity calculated for the
-total number of instances and for both orientations. Values are given
-in <span class="math">\(\frac{\text{kJ}}{\text{mol}}\)</span> and <span class="math">\(\frac{\text{kcal}}{\text{mol}}\)</span></p>
+<dt><strong>dG</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dictionary</span></dt>
+<dd><p class="first last">Dictionary containing the binding affinity calculated for the
+total number of instances. Values are given in
+<span class="math">\(\frac{\text{kJ}}{\text{mol}}\)</span> <strong>kJ/mol</strong> and
+<span class="math">\(\frac{\text{kcal}}{\text{mol}}\)</span> <strong>kcal/mol</strong></p>
 </dd>
 </dl>
 </td>

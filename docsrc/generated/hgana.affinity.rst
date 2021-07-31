@@ -19,5 +19,4 @@ hgana\.affinity
 
   .. autosummary::
 
-    plot_hist
     plot_time

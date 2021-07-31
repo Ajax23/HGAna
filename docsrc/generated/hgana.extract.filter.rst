@@ -5,9 +5,9 @@
     </div>
     <div class=col-md-9 content>
 
-extract
-=======
+filter
+======
 
 .. currentmodule:: hgana.extract
 
-.. autofunction:: extract
+.. autofunction:: filter

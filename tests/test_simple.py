@@ -65,15 +65,19 @@ class UserModelCase(unittest.TestCase):
     # Extract #
     ###########
     def test_extract(self):
-        # self.skipTest("Temporary")
+        self.skipTest("Temporary")
         print()
 
-        structs = hga.extract.extract("data/COLVAR", "output", conditions={1: [0, 0.2], 2: [0.2, 0.35]}, num=3)
+        structs = hga.extract.complex("data/COLVAR", "output", conditions={1: [0, 0.2], 2: [0.2, 0.35]}, num=3)
 
         self.assertEqual([round(x, 4) for x in structs[30000]], [0.0648, 0.2877])
 
+        filter = hga.extract.filter("data/COLVAR", [1, 2], conditions={2: {1: [0, 0.5]}})
+
+        self.assertEqual(round(filter[1][0], 4), 1.9678)
+
     def test_dd(self):
-        # self.skipTest("Temporary")
+        self.skipTest("Temporary")
         print()
 
         restraints = hga.extract.restraints("data/COLVAR", "output/restraints.top", conditions={1: [0, 0.7], 2: [0, 0.4]})
@@ -92,7 +96,7 @@ class UserModelCase(unittest.TestCase):
     # Affinity #
     ############
     def test_affinity(self):
-        # self.skipTest("Temporary")
+        self.skipTest("Temporary")
 
         # Count bound and unbound instances
         print()
@@ -119,16 +123,19 @@ class UserModelCase(unittest.TestCase):
         table = pd.concat(tables)
         print(table)
 
+        # Filter data
+        data = hga.extract.filter("data/COLVAR", [1, 2], conditions={2: {1: [0, 0.5]}})
+
         # Plot histogram
         plt.figure(figsize=(6, 4))
-        hga.affinity.plot_hist("data/COLVAR", [1, 2], ["Centers of Mass", "Oxygenes"], conditions={2: [1, 0.5]})
-        plt.savefig("output/affinity.pdf", format="pdf", dpi=1000)
+        sns.histplot(data=data)
+        plt.savefig("output/affinity_hist.pdf", format="pdf", dpi=1000)
         # plt.show()
 
         # Plot time series
         plt.figure(figsize=(6, 4))
         hga.affinity.plot_time("data/COLVAR", [1, 2])
-        plt.savefig("output/time_series.pdf", format="pdf", dpi=1000)
+        plt.savefig("output/affinity_time.pdf", format="pdf", dpi=1000)
         plt.show()
 
     ######
@@ -162,7 +169,7 @@ class UserModelCase(unittest.TestCase):
         self.assertIsNone(box.add_mol(100000))
 
     def test_mc(self):
-        # self.skipTest("Temporary")
+        self.skipTest("Temporary")
         print()
 
         # Set up box
@@ -196,7 +203,7 @@ class UserModelCase(unittest.TestCase):
             print(occ)
 
     def test_ads(self):
-        # self.skipTest("Temporary")
+        self.skipTest("Temporary")
         print()
 
         # Test simulation

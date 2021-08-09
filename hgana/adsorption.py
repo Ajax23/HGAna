@@ -180,7 +180,7 @@ class Adsorption(Box):
         # Return results
         return res_dict
 
-    def optimize(self, T, V, dG, N_bu, system=(1, 1), binding=(0, 1), guess=100):
+    def optimize(self, T, V, dG, N_bu, system=(1, 1), binding=(0, 1), guess=100, steps_prod=int(1e6)):
         """This function optimizes the box size according to the given value of
 
         .. math::
@@ -214,6 +214,8 @@ class Adsorption(Box):
             System to optimize the binding probability for
         guess : integer, optional
             Initial guess for minimization
+        steps_prod : integer
+            Number of MC steps in the production phase
 
         Returns
         -------
@@ -228,9 +230,9 @@ class Adsorption(Box):
                                    [system],
                                    T,
                                    steps_equi=int(1e3),
-                                   steps_prod=int(1e6),
+                                   steps_prod=steps_prod,
                                    binding=[{"host": binding[0], "guest": binding[1]}],
-                                   pb_f=[int(1e6), 1],
+                                   pb_f=[steps_prod, 1],
                                    n_print=0, out=["", 0], traj=["", 0])
 
             p_b = np.mean(p_b[system]["p_b"][binding])

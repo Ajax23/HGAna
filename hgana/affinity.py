@@ -141,7 +141,7 @@ def number(data_link, T, V):
     return dG
 
 
-def time(data_link, T, V, dt, is_std=False):
+def time(data_link, T, V, dt, len_frame=1, is_std=False):
     """This function calculates the binding affinity :math:`\\Delta G_T`.
     This is done by determining the association rate constant :math:`k_\\text{On}`
     and dissociation rate constant :math:`k_\\text{Off}`
@@ -227,7 +227,9 @@ def time(data_link, T, V, dt, is_std=False):
     V : float
         Simulation box volume in :math:`\\text{m}^3`
     dt : integer
-        Time calculation cut-off in frames
+        Time calculation cut-off in ps
+    len_frame : float, optional
+        Length of a frame in ps
     is_std : bool, optional
         True to calculate standard deviation
 
@@ -254,7 +256,8 @@ def time(data_link, T, V, dt, is_std=False):
     log_V = np.log(V/V0)
 
     # Apply cuttoff
-    data = {x: [y for y in data[x] if y >= dt] for x in data}
+    d_frames = round(dt/len_frame)
+    data = {x: [y for y in data[x] if y >= d_frames] for x in data}
 
     # Calculate mean time value
     t_b = np.mean(data["b"])*10e-12

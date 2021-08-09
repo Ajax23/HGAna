@@ -7,6 +7,7 @@
 
 import math
 import numpy as np
+import scipy as sc
 import seaborn as sns
 import itertools as it
 import multiprocessing as mp
@@ -23,11 +24,10 @@ class Adsorption(Box):
 
     Parameters
     ----------
-    size : list, optional
-        Three dimensional cell count in each dimension - leave empty if only
-        plotting is intended.
+    size : integer, optional
+        Number of cells
     """
-    def __init__(self, size=[0, 0, 0]):
+    def __init__(self, size=0):
         super(Adsorption, self).__init__(size)
 
     def add_mol(self, num, is_move=True, name="", struct=""):
@@ -65,11 +65,13 @@ class Adsorption(Box):
         # Add new interaction matrix entry
         self._im[len(self._im)] = {idx: 0 for idx in self._mols.keys()}
 
-    def _run_helper(self, systems, temp, steps_equi, steps_prod, binding, pb_f, n_print, out, traj):
+    def _run_helper(self, size, systems, temp, steps_equi, steps_prod, binding, pb_f, n_print, out, traj):
         """Run Monte Carlo algorithm.
 
         Parameters
         ----------
+        size : integer
+            Number of cells
         systems : list
             List of system touples containing number of molecules of each type
         temp : float
@@ -99,7 +101,7 @@ class Adsorption(Box):
 
         for system in systems:
             # Set up system
-            box = Box(self._size)
+            box = Box(size)
             for mol_id, mol in self._mols.items():
                 box.add_mol(system[mol_id], mol["is_move"], mol["name"], mol["struct"])
             box.set_im(self._im)
@@ -162,7 +164,7 @@ class Adsorption(Box):
 
             # Run parallel search
             pool = mp.Pool(processes=len(sys_np) if len(sys_np)<np else np)
-            results = [pool.apply_async(self._run_helper, args=(x, temp, steps_equi, steps_prod, binding, pb_f, n_print, out, traj)) for x in sys_np]
+            results = [pool.apply_async(self._run_helper, args=(self._size, x, temp, steps_equi, steps_prod, binding, pb_f, n_print, out, traj)) for x in sys_np]
             res_dict = {}
             for res in results:
                 res_dict.update(res.get())
@@ -170,13 +172,98 @@ class Adsorption(Box):
             # Destroy object
             del results
         else:
-            res_dict = self._run_helper(systems, temp, steps_equi, steps_prod, binding, pb_f, n_print, out, traj)
+            res_dict = self._run_helper(self._size, systems, temp, steps_equi, steps_prod, binding, pb_f, n_print, out, traj)
 
         # Save results
         utils.save([self, res_dict], out_link)
 
         # Return results
         return res_dict
+
+    def optimize(self, T, V, dG, N_bu, system=(1, 1), binding=(0, 1), guess=100):
+        """This function optimizes the box size according to the given value of
+
+        .. math::
+
+            N_{b,u}=\\frac{N_b}{N_u}
+
+        with the number of bound :math:`N_b` and unbound instances :math:`N_u`
+        during a long unbiased simulation. This is done by minimizing the
+        difference
+
+        .. math::
+
+            \\Delta=|\\frac{N_b}{N_u}-\\frac{p_b}{1-p_b}|
+
+        with binding probability :math:`p_b` from the MC simulation using the
+        Powell algorithm.
+
+        Parameters
+        ----------
+        T : float
+            Simulation temperature in Kelvin
+        V : float
+            Simulation box volumen in :math:`\\text{nm}^3`
+        dG : float
+            Simulation :math:`\\Delta G` in :math:`\\frac{\\text{kJ}}{\\text{mol}}`
+        N_bu : float
+            Fraction from simulation of bound :math:`N_b` to unbound instances :math:`N_u`
+        system : touple, optional
+            Considered system (num_mol1, num_mol2) - Typically 1:1 system
+        binding : touple, optional
+            System to optimize the binding probability for
+        guess : integer, optional
+            Initial guess for minimization
+
+        Returns
+        -------
+        size : integer
+            Number of cells.
+        """
+        # Define helper function
+        def difference(size):
+            # Calculate p_b
+            size = int(size)
+            p_b = self._run_helper(size,
+                                   [system],
+                                   T,
+                                   steps_equi=int(1e3),
+                                   steps_prod=int(1e6),
+                                   binding=[{"host": binding[0], "guest": binding[1]}],
+                                   pb_f=[int(1e6), 1],
+                                   n_print=0, out=["", 0], traj=["", 0])
+
+            p_b = np.mean(p_b[system]["p_b"][binding])
+
+            # p_b_2 = np.mean(self._run_helper(size*2,
+            #                                  [system],
+            #                                  T,
+            #                                  steps_equi=int(1e4),
+            #                                  steps_prod=int(1e6),
+            #                                  binding=[{"host": binding[0], "guest": binding[1]}],
+            #                                  pb_f=[int(1e5), 10],
+            #                                  n_print=0, out=["", 0], traj=["", 0])[system]["p_b"][binding])
+
+            # Calculate dG
+            RT = -8.314e-3*T  # kJ/mol
+            V0 = 1.661  # m^3
+            # dG_pb = RT*math.log(p_b/(1-p_b))+RT*math.log(dV*size/V0)
+            Vbox = V0*math.exp(dG/RT)*(1-p_b)/p_b
+
+            # Calculate difference
+            diff = abs(V-Vbox)
+            diff = abs(N_bu-p_b/(1-p_b))
+            # diff = abs(p_b/(1-p_b)*(1-p_b_2)/p_b_2-2)
+            print("size = "+"%5i"%size+", p_b = "+"%5.2f"%(p_b)+", p_b/p_u = "+"%5.2f"%(p_b/(1-p_b))+", diff = "+"%5.2f"%diff+", Vbox = "+"%5.2f"%Vbox)
+
+            return diff
+
+        # Run minimization
+        # res = sc.optimize.minimize(difference, guess)
+        res = sc.optimize.minimize(difference, guess, method="Powell")
+        print(res)
+
+        return res
 
     def plot_pb(self, results_link, mol_x, mol_y, p_b_id):
         """Visualize adsorption results.

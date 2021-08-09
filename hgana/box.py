@@ -11,15 +11,15 @@ class Box:
 
     Parameters
     ----------
-    size : list
-        Three dimensional cell count in each dimension
+    size : integer
+        Number of cells
     """
     def __init__(self, size):
         self._size = size
-        self._cells = size[0]*size[1]*size[2]
+        self._cells = size #[0]*size[1]*size[2]
         self._mols = {}
         self._im = {}
-        self._free = size[0]*size[1]*size[2]
+        self._free = size #[0]*size[1]*size[2]
 
     def add_mol(self, num, is_move=True, name="", struct=""):
         """Add a molecule to the system. The interaction matrix is set up and

@@ -65,7 +65,7 @@ class UserModelCase(unittest.TestCase):
     # Extract #
     ###########
     def test_extract(self):
-        self.skipTest("Temporary")
+        # self.skipTest("Temporary")
         print()
 
         structs = hga.extract.complex("data/COLVAR", "output", conditions={1: [0, 0.2], 2: [0.2, 0.35]}, num=3)
@@ -77,7 +77,7 @@ class UserModelCase(unittest.TestCase):
         self.assertEqual(round(filter[1][0], 4), 1.9678)
 
     def test_dd(self):
-        self.skipTest("Temporary")
+        # self.skipTest("Temporary")
         print()
 
         restraints = hga.extract.restraints("data/COLVAR", "output/restraints.top", conditions={1: [0, 0.7], 2: [0, 0.4]})
@@ -96,7 +96,7 @@ class UserModelCase(unittest.TestCase):
     # Affinity #
     ############
     def test_affinity(self):
-        self.skipTest("Temporary")
+        # self.skipTest("Temporary")
 
         # Count bound and unbound instances
         print()
@@ -143,7 +143,7 @@ class UserModelCase(unittest.TestCase):
     ######
     def test_box(self):
         # Initialize
-        box = hga.Box([10, 10, 10])
+        box = hga.Box(1000)
 
         # Add molecules
         box.add_mol(10)
@@ -159,7 +159,7 @@ class UserModelCase(unittest.TestCase):
         self.assertEqual(box.get_im(), {0: {0: 0, 1: 15, 2: 0}, 1: {0: 15, 1: 0, 2: 0}, 2: {0: 0, 1: 0, 2: 0}})
 
         # Getter functions
-        self.assertEqual(box.get_size(), [10, 10, 10])
+        self.assertEqual(box.get_size(), 1000)
         self.assertEqual(box.get_num(0), 10)
         self.assertEqual(box.get_name(0), "")
         self.assertEqual(box.get_struct(0), "")
@@ -169,11 +169,11 @@ class UserModelCase(unittest.TestCase):
         self.assertIsNone(box.add_mol(100000))
 
     def test_mc(self):
-        self.skipTest("Temporary")
+        # self.skipTest("Temporary")
         print()
 
         # Set up box
-        box = hga.Box([10, 10, 10])
+        box = hga.Box(1000)
         box.add_mol(10, is_move=False)
         box.add_mol(10)
         box.set_interaction(0, 1, -15)
@@ -203,11 +203,11 @@ class UserModelCase(unittest.TestCase):
             print(occ)
 
     def test_ads(self):
-        self.skipTest("Temporary")
+        # self.skipTest("Temporary")
         print()
 
         # Test simulation
-        ads = hga.Adsorption([10, 10, 10])
+        ads = hga.Adsorption(1000)
         ads.add_mol([1, 10], is_move=False)
         # ads.add_mol([x for x in range(1, 20+1, 5)])
         ads.add_mol([x for x in range(1, 100+1, 20)])
@@ -232,7 +232,7 @@ class UserModelCase(unittest.TestCase):
         # plt.show()
 
         # Test special cases
-        ads = hga.Adsorption([10, 10, 10])
+        ads = hga.Adsorption(1000)
         ads.add_mol(1, is_move=False)
         ads.add_mol(1)
         ads.set_interaction(0, 1, -15)
@@ -240,6 +240,19 @@ class UserModelCase(unittest.TestCase):
 
         # Test error
         ads.add_mol(1000000000)
+
+    def test_ads_min(self):
+        # self.skipTest("Temporary")
+        print()
+
+        # Test simulation
+        ads = hga.Adsorption(100)
+        ads.add_mol(1, is_move=False)
+        ads.add_mol(1)
+        ads.set_interaction(0, 1, -13)
+
+        # Run Optimization
+        ads.optimize(298, 31.3286, -13.2543, 10.4, guess=20)
 
 
 if __name__ == '__main__':

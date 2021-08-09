@@ -67,6 +67,7 @@ def complex(file_link, out_link=".", dt=2000, conditions={1: [0.0, 0.5], 2: [0.2
                         out_name += "/" if not out_link[-1]=="/" else ""
                         out_name += "complex_"
                         for col in conditions.keys():
+                            out_name += "%i"%col+"_"
                             out_name += "%.2f"%line_data[col]+"_"
                         out_name += str(time).zfill(7)+"ps.gro"
 

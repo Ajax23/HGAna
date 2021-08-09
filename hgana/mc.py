@@ -220,9 +220,11 @@ class MC:
             Trajectory output file link and frequency in steps
         """
         # Run equilibration phase
-        print("Running equilibration phase ...")
+        if n_print:
+            print("Running equilibration phase ...")
         self._run_phase(steps_equi, binding, [0, 0], 0, ["", 0], ["", 0])
 
         # Run Production phase
-        print("Running production phase ...")
+        if n_print:
+            print("Running production phase ...")
         return self._run_phase(steps_prod, binding, pb_f, n_print, out, traj)

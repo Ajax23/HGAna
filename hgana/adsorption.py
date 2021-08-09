@@ -193,7 +193,7 @@ class Adsorption(Box):
 
         .. math::
 
-            \\Delta=|\\frac{N_b}{N_u}-\\frac{p_b}{1-p_b}|
+            \\Delta=\\left|\\frac{N_b}{N_u}-\\frac{p_b}{1-p_b}\\right|
 
         with binding probability :math:`p_b` from the MC simulation using the
         Powell algorithm.

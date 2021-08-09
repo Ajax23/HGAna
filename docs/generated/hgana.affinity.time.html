@@ -112,7 +112,7 @@
 <h1>time<a class="headerlink" href="#time" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hgana.affinity.time">
-<code class="descclassname">hgana.affinity.</code><code class="descname">time</code><span class="sig-paren">(</span><em>data_link</em>, <em>T</em>, <em>V</em>, <em>dt</em>, <em>is_std=False</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.affinity.time" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">hgana.affinity.</code><code class="descname">time</code><span class="sig-paren">(</span><em>data_link</em>, <em>T</em>, <em>V</em>, <em>dt</em>, <em>len_frame=1</em>, <em>is_std=False</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.affinity.time" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function calculates the binding affinity <span class="math">\(\Delta G_T\)</span>.
 This is done by determining the association rate constant <span class="math">\(k_\text{On}\)</span>
 and dissociation rate constant <span class="math">\(k_\text{Off}\)</span></p>
@@ -182,7 +182,10 @@ the binding affinity can be determined by</p>
 <dd><p class="first last">Simulation box volume in <span class="math">\(\text{m}^3\)</span></p>
 </dd>
 <dt><strong>dt</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer</span></dt>
-<dd><p class="first last">Time calculation cut-off in frames</p>
+<dd><p class="first last">Time calculation cut-off in ps</p>
+</dd>
+<dt><strong>len_frame</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span></dt>
+<dd><p class="first last">Length of a frame in ps</p>
 </dd>
 <dt><strong>is_std</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
 <dd><p class="first last">True to calculate standard deviation</p>

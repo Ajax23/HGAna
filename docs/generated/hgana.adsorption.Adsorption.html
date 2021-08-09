@@ -112,16 +112,15 @@
 <h1>Adsorption<a class="headerlink" href="#adsorption" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="hgana.adsorption.Adsorption">
-<em class="property">class </em><code class="descclassname">hgana.adsorption.</code><code class="descname">Adsorption</code><span class="sig-paren">(</span><em>size=[0, 0, 0]</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.adsorption.Adsorption" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">hgana.adsorption.</code><code class="descname">Adsorption</code><span class="sig-paren">(</span><em>size=0</em><span class="sig-paren">)</span><a class="headerlink" href="#hgana.adsorption.Adsorption" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class run calculates adsorption isotherms using the MC algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>size</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
-<dd><p class="first last">Three dimensional cell count in each dimension - leave empty if only
-plotting is intended.</p>
+<dt><strong>size</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer, optional</span></dt>
+<dd><p class="first last">Number of cells</p>
 </dd>
 </dl>
 </td>
@@ -138,13 +137,16 @@ plotting is intended.</p>
 <tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption.add_mol.html#hgana.adsorption.Adsorption.add_mol" title="hgana.adsorption.Adsorption.add_mol"><code class="xref py py-obj docutils literal"><span class="pre">add_mol</span></code></a>(num[,&nbsp;is_move,&nbsp;name,&nbsp;struct])</td>
 <td>Add a molecule to the system.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.adsorption.Adsorption.plot_iso.html#hgana.adsorption.Adsorption.plot_iso" title="hgana.adsorption.Adsorption.plot_iso"><code class="xref py py-obj docutils literal"><span class="pre">plot_iso</span></code></a>(results_link,&nbsp;system,&nbsp;val_x,&nbsp;val_y)</td>
+<tr class="row-even"><td><a class="reference internal" href="hgana.adsorption.Adsorption.optimize.html#hgana.adsorption.Adsorption.optimize" title="hgana.adsorption.Adsorption.optimize"><code class="xref py py-obj docutils literal"><span class="pre">optimize</span></code></a>(T,&nbsp;V,&nbsp;dG,&nbsp;N_bu[,&nbsp;system,&nbsp;binding,&nbsp;…])</td>
+<td>This function optimizes the box size according to the given value of</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption.plot_iso.html#hgana.adsorption.Adsorption.plot_iso" title="hgana.adsorption.Adsorption.plot_iso"><code class="xref py py-obj docutils literal"><span class="pre">plot_iso</span></code></a>(results_link,&nbsp;system,&nbsp;val_x,&nbsp;val_y)</td>
 <td>Visualize adsorption isotherm based on molecule number.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption.plot_pb.html#hgana.adsorption.Adsorption.plot_pb" title="hgana.adsorption.Adsorption.plot_pb"><code class="xref py py-obj docutils literal"><span class="pre">plot_pb</span></code></a>(results_link,&nbsp;mol_x,&nbsp;mol_y,&nbsp;p_b_id)</td>
+<tr class="row-even"><td><a class="reference internal" href="hgana.adsorption.Adsorption.plot_pb.html#hgana.adsorption.Adsorption.plot_pb" title="hgana.adsorption.Adsorption.plot_pb"><code class="xref py py-obj docutils literal"><span class="pre">plot_pb</span></code></a>(results_link,&nbsp;mol_x,&nbsp;mol_y,&nbsp;p_b_id)</td>
 <td>Visualize adsorption results.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="hgana.adsorption.Adsorption.run.html#hgana.adsorption.Adsorption.run" title="hgana.adsorption.Adsorption.run"><code class="xref py py-obj docutils literal"><span class="pre">run</span></code></a>(temp,&nbsp;steps_equi,&nbsp;steps_prod,&nbsp;out_link)</td>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption.run.html#hgana.adsorption.Adsorption.run" title="hgana.adsorption.Adsorption.run"><code class="xref py py-obj docutils literal"><span class="pre">run</span></code></a>(temp,&nbsp;steps_equi,&nbsp;steps_prod,&nbsp;out_link)</td>
 <td>Run Monte Carlo algorithm.</td>
 </tr>
 </tbody>
@@ -156,7 +158,7 @@ plotting is intended.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption._run_helper.html#hgana.adsorption.Adsorption._run_helper" title="hgana.adsorption.Adsorption._run_helper"><code class="xref py py-obj docutils literal"><span class="pre">_run_helper</span></code></a>(systems,&nbsp;temp,&nbsp;steps_equi,&nbsp;…)</td>
+<tr class="row-odd"><td><a class="reference internal" href="hgana.adsorption.Adsorption._run_helper.html#hgana.adsorption.Adsorption._run_helper" title="hgana.adsorption.Adsorption._run_helper"><code class="xref py py-obj docutils literal"><span class="pre">_run_helper</span></code></a>(size,&nbsp;systems,&nbsp;temp,&nbsp;steps_equi,&nbsp;…)</td>
 <td>Run Monte Carlo algorithm.</td>
 </tr>
 </tbody>

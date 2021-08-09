@@ -5,10 +5,11 @@ hgana\.extract
 
 
 
-   .. rubric:: Functions
+  .. rubric:: Functions
 
-   .. autosummary::
+  .. autosummary::
 
-      convert_gro
-      extract
-      restraints
+    filter
+    convert_gro
+    complex
+    restraints

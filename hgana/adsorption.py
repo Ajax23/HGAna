@@ -253,7 +253,7 @@ class Adsorption(Box):
             Vbox = V0*math.exp(dG/RT)*(1-p_b)/p_b
 
             # Calculate difference
-            diff = abs(V-Vbox)
+            # diff = abs(V-Vbox)
             diff = abs(N_bu-p_b/(1-p_b))
             # diff = abs(p_b/(1-p_b)*(1-p_b_2)/p_b_2-2)
             print("size = "+"%5i"%size+", p_b = "+"%5.2f"%(p_b)+", p_b/p_u = "+"%5.2f"%(p_b/(1-p_b))+", diff = "+"%5.2f"%diff+", Vbox = "+"%5.2f"%Vbox)

@@ -33,9 +33,10 @@ class UserModelCase(unittest.TestCase):
                 shutil.rmtree(file_path)
 
         # Set style
-        sns.set_style("white",{"xtick.bottom": True,'ytick.left': True})
+        sns.set_style("white", {"xtick.bottom": True, 'ytick.left': True})
         sns.set_context("paper")
         sns.set_palette(sns.color_palette("deep"))
+        sns.set_color_codes("deep")
 
     #########
     # Utils #
